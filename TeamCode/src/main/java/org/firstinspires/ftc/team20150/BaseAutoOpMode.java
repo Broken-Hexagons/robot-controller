@@ -27,6 +27,7 @@ public abstract class BaseAutoOpMode extends LinearOpMode {
     public void runOpMode() {
         initHardware();
         waitForStart();
+        if (isStopRequested()) return;
         runAuto();
     }
 
