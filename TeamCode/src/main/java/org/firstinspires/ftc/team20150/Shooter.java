@@ -1,21 +1,13 @@
 package org.firstinspires.ftc.team20150;
 
-import static java.lang.Thread.sleep;
-
-import android.annotation.SuppressLint;
-
-import androidx.annotation.NonNull;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
  * Represents the shooter mechanism of the robot.
- * This class controls the flywheel for shooting and the gatekeeper servo for releasing the ball.
+ * This class controls the flywheel for shooting and the gatekeeper motor for releasing the ball.
  * It includes different speed modes for various shooting distances.
  */
 public class Shooter {
@@ -25,28 +17,26 @@ public class Shooter {
      * FLEX mode allows for manual speed adjustments.
      */
     enum SpeedMode {
-        FLEX(3, "FLEX", -1),
-        DUNK(4, "Dunk mode", 0.45),
-        FREETHROW(5, "Free throw mode", 0.53),
-        THREEPOINTER(6, "Three pointer mode", 0.63);
-        private int mode;
+        FLEX("FLEX", -1),
+        DUNK("Dunk mode", 0.45),
+        FREETHROW("Free throw mode", 0.53),
+        THREEPOINTER("Three pointer mode", 0.63);
         private String name;
         private double speed;
 
         /**
          * Constructor for SpeedMode enum.
-         * @param mode The integer representation of the mode.
          * @param name The descriptive name of the mode.
          * @param speed The flywheel power for this mode.
          */
-        private SpeedMode(int mode, String name, double speed){
-            this.mode = mode;
+        private SpeedMode(String name, double speed){
             this.name = name;
             this.speed = speed;
         }
     }
-    private final String flywheelCaption = "Shooter.Flywheel";
-    private final String gatekeeperCaption = "Shooter.Gatekeeper";
+    private static final String flywheelCaption = "Shooter.Flywheel";
+    private static final String gatekeeperCaption = "Shooter.Gatekeeper";
+    private static final double speedIncrement = 0.01;
     private final DcMotor flyWheel;
     private final DcMotor gateKeeper;
     private final Telemetry telemetry;
@@ -54,7 +44,6 @@ public class Shooter {
     private double currentSpeed;
     private double newSpeed;
 
-    private final double speedIncrement = 0.01;
     private SpeedMode currentMode;
 
 
@@ -128,6 +117,16 @@ public class Shooter {
      */
     public void nextFlywheelMode(){
         switch (currentMode){
+            case FLEX:
+                // Switch from FLEX to a preset mode
+                if(currentSpeed <= SpeedMode.DUNK.speed){
+                    currentMode = SpeedMode.DUNK;
+                }else if(currentSpeed <= SpeedMode.FREETHROW.speed){
+                    currentMode = SpeedMode.FREETHROW;
+                }else{
+                    currentMode = SpeedMode.THREEPOINTER;
+                }
+                break;
             case DUNK:
                 currentMode = SpeedMode.FREETHROW;
                 break;
@@ -135,17 +134,6 @@ public class Shooter {
             case THREEPOINTER:
                 currentMode = SpeedMode.THREEPOINTER;
                 break;
-        }
-
-        // Logic to switch from FLEX to a preset mode
-        if(currentMode == SpeedMode.FLEX){
-            if(currentSpeed <= SpeedMode.DUNK.speed){
-                currentMode = SpeedMode.DUNK;
-            }else if(currentSpeed <= SpeedMode.FREETHROW.speed){
-                currentMode = SpeedMode.FREETHROW;
-            }else if(currentSpeed <= SpeedMode.THREEPOINTER.speed){
-                currentMode = SpeedMode.THREEPOINTER;
-            }
         }
         telemetry.speak(currentMode.name);
         update();
@@ -154,41 +142,28 @@ public class Shooter {
     /**
      * Cycles to the next less powerful flywheel speed mode.
      * If in FLEX mode, it will select a mode based on the current speed.
-     * Includes a delay after changing modes.
      */
     public void previousFlywheelMode(){
         switch (currentMode){
+            case FLEX:
+                // Switch from FLEX to a preset mode
+                if(currentSpeed > SpeedMode.THREEPOINTER.speed){
+                    currentMode = SpeedMode.THREEPOINTER;
+                }else if(currentSpeed > SpeedMode.FREETHROW.speed){
+                    currentMode = SpeedMode.FREETHROW;
+                }else if(currentSpeed > SpeedMode.DUNK.speed){
+                    currentMode = SpeedMode.DUNK;
+                }
+                break;
             case THREEPOINTER:
                 currentMode = SpeedMode.FREETHROW;
-                flyWheel.setPower(0);
                 break;
             case FREETHROW:
                 currentMode = SpeedMode.DUNK;
-                flyWheel.setPower(0);
                 break;
             case DUNK:
                 break;
         }
-
-        // Logic to switch from FLEX to a preset mode
-        if(currentMode == SpeedMode.FLEX){
-            if(currentSpeed > SpeedMode.THREEPOINTER.speed){
-                currentMode = SpeedMode.THREEPOINTER;
-                flyWheel.setPower(0);
-            }else if(currentSpeed > SpeedMode.FREETHROW.speed){
-                currentMode = SpeedMode.FREETHROW;
-                flyWheel.setPower(0);
-            }else if(currentSpeed > SpeedMode.DUNK.speed){
-                currentMode = SpeedMode.DUNK;
-                flyWheel.setPower(0);
-            }
-        }
-
-        try {
-            // Pause to allow the flywheel to spin down slightly
-            sleep(500);
-        } catch (InterruptedException ignored) {}
-
         telemetry.speak(currentMode.name);
         update();
     }
@@ -207,7 +182,7 @@ public class Shooter {
     }
 
     /**
-     * Opens the gatekeeper servo to release the artifacts for shooting.
+     * Opens the gatekeeper to release the artifacts for shooting.
      */
     public void openGatekeeper(){
        gateKeeper.setPower(0.7);
@@ -215,7 +190,7 @@ public class Shooter {
     }
 
     /**
-     * Closes the gatekeeper servo to store or block artifacts.
+     * Closes the gatekeeper to store or block artifacts.
      */
     public void closeGatekeeper(){
         gateKeeper.setPower(0.0);

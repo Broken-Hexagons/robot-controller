@@ -1,13 +1,11 @@
 package org.firstinspires.ftc.team20150;
 
-import static java.lang.Thread.sleep;
-
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name = "BioBuzz 2 Driver TeleOp")
 public class BioBuzzTwoDriverMode extends BaseTeleOpMode {
 
-    private final String robotCaption = "Robot";
+    private static final String robotCaption = "Robot";
     private Shooter shooter;
     private Intake intake;
 
