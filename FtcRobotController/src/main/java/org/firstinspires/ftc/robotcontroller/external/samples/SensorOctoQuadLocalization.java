@@ -65,11 +65,11 @@ public class SensorOctoQuadLocalization extends LinearOpMode
     static final int DEADWHEEL_PORT_Y = 1;  // encoder port on OctoQuad
     static final OctoQuad.EncoderDirection DEADWHEEL_X_DIR = OctoQuad.EncoderDirection.FORWARD;
     static final OctoQuad.EncoderDirection DEADWHEEL_Y_DIR = OctoQuad.EncoderDirection.REVERSE;
-    static final float X_TICKS_PER_MM  =  12.34f;  // eg.  19.89f for a goBILDA 4-Bar Odometry Pod
-    static final float Y_TICKS_PER_MM  =  12.34f;  // eg.  19.89f for a goBILDA 4-Bar Odometry Pod
+    static final float X_TICKS_PER_MM  =  12.34f;  // eg.  19.89f for a goBILDA 4-Bar Odometry Pod.
+    static final float Y_TICKS_PER_MM  =  12.34f;  // eg.  19.89f for a goBILDA 4-Bar Odometry Pod.
     static final float TCP_OFFSET_X_MM =  123.4f;  // eg. 147.0f from QuickStart Guide diagram
     static final float TCP_OFFSET_Y_MM =  123.4f;  // eg.-158.0f from QuickStart Guide diagram
-    static final float IMU_SCALAR      =    1.0f;  // Rotational scale factor.
+    static final float IMU_SCALAR      =    1.0f;  // Rotational scale factor
     // #####################################################################################
 
     // Conversion factor for radians --> degrees
@@ -91,7 +91,7 @@ public class SensorOctoQuadLocalization extends LinearOpMode
         // Begin by retrieving a handle to the device from the hardware map.
         OctoQuad oq = hardwareMap.get(OctoQuad.class, "octoquad");
 
-        // Increase the telemetry update frequency to make the data display a bit less laggy
+        // Increase the telemetry update frequency to make the data display a bit less laggy.
         telemetry.setMsTransmissionInterval(50);
         telemetry.setDisplayFormat(Telemetry.DisplayFormat.HTML);
 
@@ -134,7 +134,7 @@ public class SensorOctoQuadLocalization extends LinearOpMode
         }
 
         /*
-         * Don't proceed to the main loop until calibration is complete
+         * Don't proceed to the main loop until calibration is complete.
          */
         while (!isStopRequested() && (oq.getLocalizerStatus() != OctoQuad.LocalizerStatus.RUNNING))
         {
@@ -144,8 +144,8 @@ public class SensorOctoQuadLocalization extends LinearOpMode
             sleep(100);
         }
 
-        // Establish a starting position for the robot. This will be 0,0,0 by default so this line
-        // is rather redundant, but you could change it to be anything you want
+        // Establish a starting position for the robot.  This will be 0,0,0 by default so this line
+        // is rather redundant, but you could change it to be anything you want.
         oq.setLocalizerPose(0, 0, 0);
 
         // Not required for localizer, but left in here since raw counts are displayed
@@ -157,7 +157,7 @@ public class SensorOctoQuadLocalization extends LinearOpMode
          */
         while (opModeIsActive())
         {
-            // Use the Gamepad A/Cross button to teleport to a new location and heading
+            // Use the Gamepad A/Cross button to teleport to a new location and heading.
             if (gamepad1.crossWasPressed())
             {
                 oq.setLocalizerPose(200, 200, (float)(Math.PI/2.0f));
@@ -167,12 +167,12 @@ public class SensorOctoQuadLocalization extends LinearOpMode
             oq.readLocalizerData(localizer);
 
             // #################################################################################
-            // IMPORTANT! Check whether the received CRC for the data is correct. An incorrect
+            // IMPORTANT!  Check whether the received CRC for the data is correct. An incorrect
             //            CRC indicates that the data was corrupted in transit and cannot be
             //            trusted. This can be caused by internal or external ESD.
             //
             //            If the CRC is NOT reported as OK, you should throw away the data and
-            //            try to read again.
+            //            try to read again
             //
             //  NOTE:  Raw odometry pod counts are displayed to verify correct direction of rotation
             //  When the robot is pushed FWD,  the X pod counts must increase in value
@@ -183,7 +183,7 @@ public class SensorOctoQuadLocalization extends LinearOpMode
             {
                 warnIfNotTuned();
 
-                // Display Robot position data
+                // Display Robot position data.
                 telemetry.addData("Localizer Status", localizer.localizerStatus);
                 telemetry.addData("Heading deg", "%.2f", localizer.heading_rad * RAD2DEG);
                 telemetry.addData("Rotation dps", "%.2f", localizer.velHeading_radS * RAD2DEG);
@@ -209,7 +209,7 @@ public class SensorOctoQuadLocalization extends LinearOpMode
             }
             totalPackets++;
 
-            // Print some statistics about CRC validation
+            // Print some statistics about CRC validation.
             telemetry.addLine(String.format("%d CRC error(s) in %d packets", badPackets, totalPackets));
 
             // Send updated telemetry to the Driver Station

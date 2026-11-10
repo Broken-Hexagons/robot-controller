@@ -6,10 +6,10 @@ public class BaseTeleOpMode extends OpMode {
 
     private static final double STEER_COMPENSATION = 0.025;
     private static final double NORMAL_POWER_SCALE = 0.5;
-    private static final double FAST_POWER_SCALE = 0.75; //when left bumper is held
-    private static final double SLOW_POWER_SCALE = 0.25; //when right bumper is held
+    private static final double FAST_POWER_SCALE = 0.75; //when left bumper is held.
+    private static final double SLOW_POWER_SCALE = 0.25; //when right bumper is held.
 
-    // Declare OpMode members.
+    // Declare OpMode members
     protected DriveTrain driveTrain;
     protected int sectorCount = 4;
 
@@ -26,14 +26,14 @@ public class BaseTeleOpMode extends OpMode {
     }
 
     /*
-     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
+     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY.
      */
     @Override
     public void init_loop() {
     }
 
     /*
-     * Code to run ONCE when the driver hits PLAY
+     * Code to run ONCE when the driver hits PLAY.
      */
     //@Override
 
@@ -73,7 +73,7 @@ public class BaseTeleOpMode extends OpMode {
         final double snappedX = degreesToStickX(snapDegrees, magnitude);
         final double snappedY = degreesToStickY(snapDegrees, magnitude);
 
-        // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
+        // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate
         double axial = -snappedY * (1 + STEER_COMPENSATION * Math.abs(gamepad1.right_stick_x));
         double lateral = snappedX;
         double yaw = gamepad1.right_stick_x;
@@ -95,7 +95,7 @@ public class BaseTeleOpMode extends OpMode {
     }
 
     /*
-     * Code to run ONCE after the driver hits STOP
+     * Code to run ONCE after the driver hits STOP.
      */
     @Override
     public void stop() {

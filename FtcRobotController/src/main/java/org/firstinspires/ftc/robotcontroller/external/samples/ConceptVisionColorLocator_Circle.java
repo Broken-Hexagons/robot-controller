@@ -59,10 +59,10 @@ import java.util.List;
  *
  * A colored enclosing circle is drawn on the camera preview to show the location of each Blob
  * The original Blob contour can also be added to the preview.
- * This is helpful when configuring the ColorBlobLocatorProcessor parameters.
+ * This is helpful when configuring the ColorBlobLocatorProcessor parameters
  *
  * Tip:  Connect an HDMI monitor to the Control Hub to view the Color Location process in real-time.
- *       Or use a screen copy utility like ScrCpy.exe to view the video remotely.
+ *       Or use a screen copy utility like ScrCpy.exe to view the video remotely
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
@@ -74,7 +74,7 @@ public class ConceptVisionColorLocator_Circle extends LinearOpMode {
     @Override
     public void runOpMode() {
         /* Build a "Color Locator" vision processor based on the ColorBlobLocatorProcessor class.
-         * - Specify the color range you are looking for. Use a predefined color, or create your own
+         * - Specify the color range you are looking for.  Use a predefined color, or create your own
          *
          *   .setTargetColorRange(ColorRange.BLUE)     // use a predefined color match
          *     Available colors are: RED, BLUE, YELLOW, GREEN, ARTIFACT_GREEN, ARTIFACT_PURPLE
@@ -106,12 +106,12 @@ public class ConceptVisionColorLocator_Circle extends LinearOpMode {
          * - include any pre-processing of the image or mask before looking for Blobs.
          *     There are some extra processing you can include to improve the formation of blobs.
          *     Using these features requires an understanding of how they may effect the final
-         *     blobs.  The "pixels" argument sets the NxN kernel size.
+         *     blobs. The "pixels" argument sets the NxN kernel size.
          *        .setBlurSize(int pixels)
          *        Blurring an image helps to provide a smooth color transition between objects,
-         *        and smoother contours.  The higher the number, the more blurred the image becomes.
+         *        and smoother contours. The higher the number, the more blurred the image becomes.
          *        Note:  Even "pixels" values will be incremented to satisfy the "odd number" requirement.
-         *        Blurring too much may hide smaller features.  A size of 5 is good for a 320x240 image.
+         *        Blurring too much may hide smaller features.  A size of 5 is good for a 320x240 image
          *
          *     .setErodeSize(int pixels)
          *        Erosion removes floating pixels and thin lines so that only substantive objects remain.
@@ -120,32 +120,32 @@ public class ConceptVisionColorLocator_Circle extends LinearOpMode {
          *
          *     .setDilateSize(int pixels)
          *        Dilation makes objects and lines more visible by filling in small holes, and making
-         *        filled shapes appear larger. Dilation is useful for joining broken parts of an
+         *        filled shapes appear larger.  Dilation is useful for joining broken parts of an
          *        object, such as when removing noise from an image.
          *        "pixels" in the range of 2-4 are suitable for low res images.
          *
          *        .setMorphOperationType(MorphOperationType morphOperationType)
          *        This defines the order in which the Erode/Dilate actions are performed.
          *        OPENING:    Will Erode and then Dilate which will make small noise blobs go away
-         *        CLOSING:    Will Dilate and then Erode which will tend to fill in any small holes in blob edges.
+         *        CLOSING:    Will Dilate and then Erode which will tend to fill in any small holes in blob edges
          */
         ColorBlobLocatorProcessor colorLocator = new ColorBlobLocatorProcessor.Builder()
-                .setTargetColorRange(ColorRange.ARTIFACT_PURPLE)   // Use a predefined color match
+                .setTargetColorRange(ColorRange.ARTIFACT_PURPLE)   // Use a predefined color match.
                 .setContourMode(ColorBlobLocatorProcessor.ContourMode.EXTERNAL_ONLY)
                 .setRoi(ImageRegion.asUnityCenterCoordinates(-0.75, 0.75, 0.75, -0.75))
-                .setDrawContours(true)   // Show contours on the Stream Preview
+                .setDrawContours(true)   // Show contours on the Stream Preview.
                 .setBoxFitColor(0)       // Disable the drawing of rectangles
-                .setCircleFitColor(Color.rgb(255, 255, 0)) // Draw a circle
+                .setCircleFitColor(Color.rgb(255, 255, 0)) // Draw a circle.
                 .setBlurSize(5)          // Smooth the transitions between different colors in image
 
-                // the following options have been added to fill in perimeter holes.
-                .setDilateSize(15)       // Expand blobs to fill any divots on the edges
-                .setErodeSize(15)        // Shrink blobs back to original size
+                // the following options have been added to fill in perimeter holes
+                .setDilateSize(15)       // Expand blobs to fill any divots on the edges.
+                .setErodeSize(15)        // Shrink blobs back to original size.
                 .setMorphOperationType(ColorBlobLocatorProcessor.MorphOperationType.CLOSING)
 
                 .build();
         /*
-         * Build a vision portal to run the Color Locator process.
+         * Build a vision portal to run the Color Locator process
          *
          *  - Add the colorLocator process created above.
          *  - Set the desired video resolution.
@@ -163,14 +163,14 @@ public class ConceptVisionColorLocator_Circle extends LinearOpMode {
                 .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
                 .build();
 
-        telemetry.setMsTransmissionInterval(100);   // Speed up telemetry updates for debugging.
+        telemetry.setMsTransmissionInterval(100);   // Speed up telemetry updates for debugging
         telemetry.setDisplayFormat(Telemetry.DisplayFormat.MONOSPACE);
 
         // WARNING:  To view the stream preview on the Driver Station, this code runs in INIT mode.
         while (opModeIsActive() || opModeInInit()) {
             telemetry.addData("preview on/off", "... Camera Stream\n");
 
-            // Read the current list
+            // Read the current list.
             List<ColorBlobLocatorProcessor.Blob> blobs = colorLocator.getBlobs();
 
             /*
@@ -182,17 +182,17 @@ public class ConceptVisionColorLocator_Circle extends LinearOpMode {
              * To perform a filter
              *   ColorBlobLocatorProcessor.Util.filterByCriteria(criteria, minValue, maxValue, blobs);
              *
-             * The following criteria are currently supported.
+             * The following criteria are currently supported
              *
              * ColorBlobLocatorProcessor.BlobCriteria.BY_CONTOUR_AREA
              *   A Blob's area is the number of pixels contained within the Contour.  Filter out any
              *   that are too big or small. Start with a large range and then refine the range based
-             *   on the likely size of the desired object in the viewfinder.
+             *   on the likely size of the desired object in the viewfinder
              *
              * ColorBlobLocatorProcessor.BlobCriteria.BY_DENSITY
              *   A blob's density is an indication of how "full" the contour is.
              *   If you put a rubber band around the contour you would get the "Convex Hull" of the
-             *   contour. The density is the ratio of Contour-area to Convex Hull-area.
+             *   contour. The density is the ratio of Contour-area to Convex Hull-area
              *
              * ColorBlobLocatorProcessor.BlobCriteria.BY_ASPECT_RATIO
              *   A blob's Aspect ratio is the ratio of boxFit long side to short side.
@@ -200,7 +200,7 @@ public class ConceptVisionColorLocator_Circle extends LinearOpMode {
              *
              * ColorBlobLocatorProcessor.BlobCriteria.BY_ARC_LENGTH
              *   A blob's arc length is the perimeter of the blob.
-             *   This can be used in conjunction with an area filter to detect oddly shaped blobs.
+             *   This can be used in conjunction with an area filter to detect oddly shaped blobs
              *
              * ColorBlobLocatorProcessor.BlobCriteria.BY_CIRCULARITY
              *   A blob's circularity is how circular it is based on the known area and arc length.
@@ -215,7 +215,7 @@ public class ConceptVisionColorLocator_Circle extends LinearOpMode {
                     0.6, 1, blobs);     /* filter out non-circular blobs.
                     * NOTE: You may want to adjust the minimum value depending on your use case.
                     * Circularity values will be affected by shadows, and will therefore vary based
-                    * on the location of the camera on your robot and venue lighting. It is strongly
+                    * on the location of the camera on your robot and venue lighting.  It is strongly
                     * encouraged to test your vision on the competition field if your event allows
                     * sensor calibration time.
                     */
@@ -230,7 +230,7 @@ public class ConceptVisionColorLocator_Circle extends LinearOpMode {
 
             telemetry.addLine("Circularity Radius Center");
 
-            // Display the Blob's circularity, and the size (radius) and center location of its circleFit.
+            // Display the Blob's circularity, and the size (radius) and center location of its circleFit
             for (ColorBlobLocatorProcessor.Blob b : blobs) {
 
                 Circle circleFit = b.getCircle();

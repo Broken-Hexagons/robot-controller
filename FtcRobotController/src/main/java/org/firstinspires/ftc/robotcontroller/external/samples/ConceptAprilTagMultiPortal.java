@@ -67,9 +67,9 @@ public class ConceptAprilTagMultiPortal extends LinearOpMode
 
         // If we want to run AprilTag detection on two portals simultaneously,
         // we need to create two distinct instances of the AprilTag processor,
-        // one for each portal. If you want to see more detail about different
+        // one for each portal.  If you want to see more detail about different
         // options that you have when creating these processors, go check out
-        // the ConceptAprilTag OpMode.
+        // the ConceptAprilTag OpMode
         aprilTagProcessor1 = AprilTagProcessor.easyCreateWithDefaults();
         aprilTagProcessor2 = AprilTagProcessor.easyCreateWithDefaults();
 

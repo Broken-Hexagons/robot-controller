@@ -62,7 +62,7 @@ import java.util.Locale;
 public class UtilityCameraFrameCapture extends LinearOpMode
 {
     /*
-     * EDIT THESE PARAMETERS AS NEEDED
+     * EDIT THESE PARAMETERS AS NEEDED.
      */
     final boolean USING_WEBCAM = false;
     final BuiltinCameraDirection INTERNAL_CAM_DIR = BuiltinCameraDirection.BACK;

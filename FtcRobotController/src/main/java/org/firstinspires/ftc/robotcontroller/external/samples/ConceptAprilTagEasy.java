@@ -59,16 +59,16 @@ import java.util.List;
  * RobotAutoDriveToAprilTagOmni and RobotAutoDriveToAprilTagTank
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
+ * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 @TeleOp(name = "Concept: AprilTag Easy", group = "Concept")
 @Disabled
 public class ConceptAprilTagEasy extends LinearOpMode {
 
-    private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
+    private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera.
 
     /**
-     * The variable to store our instance of the AprilTag processor.
+     * The variable to store our instance of the AprilTag processor
      */
     private AprilTagProcessor aprilTag;
 
@@ -82,7 +82,7 @@ public class ConceptAprilTagEasy extends LinearOpMode {
 
         initAprilTag();
 
-        // Wait for the DS start button to be touched.
+        // Wait for the DS start button to be touched
         telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
         telemetry.addData(">", "Touch START to start OpMode");
         telemetry.update();
@@ -108,20 +108,20 @@ public class ConceptAprilTagEasy extends LinearOpMode {
             }
         }
 
-        // Save more CPU resources when camera is no longer needed.
+        // Save more CPU resources when camera is no longer needed
         visionPortal.close();
 
     }   // end method runOpMode()
 
     /**
-     * Initialize the AprilTag processor.
+     * Initialize the AprilTag processor
      */
     private void initAprilTag() {
 
-        // Create the AprilTag processor the easy way.
+        // Create the AprilTag processor the easy way
         aprilTag = AprilTagProcessor.easyCreateWithDefaults();
 
-        // Create the vision portal the easy way.
+        // Create the vision portal the easy way
         if (USE_WEBCAM) {
             visionPortal = VisionPortal.easyCreateWithDefaults(
                 hardwareMap.get(WebcamName.class, "Webcam 1"), aprilTag);
@@ -133,14 +133,14 @@ public class ConceptAprilTagEasy extends LinearOpMode {
     }   // end method initAprilTag()
 
     /**
-     * Add telemetry about AprilTag detections.
+     * Add telemetry about AprilTag detections
      */
     private void telemetryAprilTag() {
 
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
         telemetry.addData("# AprilTags Detected", currentDetections.size());
 
-        // Step through the list of detections and display info for each one.
+        // Step through the list of detections and display info for each one
         for (AprilTagDetection detection : currentDetections) {
             if (detection.metadata != null) {
                 telemetry.addLine(String.format("\n==== (ID %d) %s", detection.id, detection.metadata.name));
@@ -153,7 +153,7 @@ public class ConceptAprilTagEasy extends LinearOpMode {
             }
         }   // end for() loop
 
-        // Add "key" information to telemetry
+        // Add "key" information to telemetry.
         telemetry.addLine("\nkey:\nXYZ = X (Right), Y (Forward), Z (Up) dist.");
         telemetry.addLine("PRY = Pitch, Roll & Yaw (XYZ Rotation)");
         telemetry.addLine("RBE = Range, Bearing & Elevation");

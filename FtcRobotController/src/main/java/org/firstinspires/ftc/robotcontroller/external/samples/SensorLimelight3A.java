@@ -61,7 +61,7 @@ import java.util.List;
  *   Control Hub's assigned ip address for that ethernet interface is used as the "serial number".
  *
  *   Tapping the Limelight's name, transitions to a new screen where the user can rename the Limelight
- *   and specify the Limelight's ip address.  Users should take care not to confuse the ip address of
+ *   and specify the Limelight's ip address. Users should take care not to confuse the ip address of
  *   the Limelight itself, which can be configured through the Limelight settings page via a web browser,
  *   and the ip address the Limelight device assigned the Control Hub and which is displayed in small text
  *   below the name of the Limelight on the top level configuration screen.
@@ -82,7 +82,7 @@ public class SensorLimelight3A extends LinearOpMode {
         limelight.pipelineSwitch(0);
 
         /*
-         * Starts polling for data.  If you neglect to call start(), getLatestResult() will return null.
+         * Starts polling for data. If you neglect to call start(), getLatestResult() will return null.
          */
         limelight.start();
 
@@ -101,7 +101,7 @@ public class SensorLimelight3A extends LinearOpMode {
 
             LLResult result = limelight.getLatestResult();
             if (result.isValid()) {
-                // Access general information
+                // Access general information.
                 Pose3D botpose = result.getBotpose();
                 double captureLatency = result.getCaptureLatency();
                 double targetingLatency = result.getTargetingLatency();
@@ -123,7 +123,7 @@ public class SensorLimelight3A extends LinearOpMode {
                     telemetry.addData("Barcode", "Data: %s", br.getData());
                 }
 
-                // Access classifier results
+                // Access classifier results.
                 List<LLResultTypes.ClassifierResult> classifierResults = result.getClassifierResults();
                 for (LLResultTypes.ClassifierResult cr : classifierResults) {
                     telemetry.addData("Classifier", "Class: %s, Confidence: %.2f", cr.getClassName(), cr.getConfidence());

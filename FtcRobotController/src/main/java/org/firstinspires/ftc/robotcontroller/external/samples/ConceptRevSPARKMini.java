@@ -63,7 +63,7 @@ public class ConceptRevSPARKMini extends LinearOpMode {
         telemetry.update();
 
         // Initialize the hardware variables. Note that the strings used here as parameters
-        // to 'get' must correspond to the names assigned during robot configuration.
+        // to 'get' must correspond to the names assigned during robot configuration
         leftDrive  = hardwareMap.get(DcMotorSimple.class, "left_drive");
         rightDrive = hardwareMap.get(DcMotorSimple.class, "right_drive");
 
@@ -84,10 +84,10 @@ public class ConceptRevSPARKMini extends LinearOpMode {
             double rightPower;
 
             // Choose to drive using either Tank Mode, or POV Mode
-            // Comment out the method that's not used.  The default below is POV.
+            // Comment out the method that's not used. The default below is POV
 
             // POV Mode uses left stick to go forward, and right stick to turn.
-            // - This uses basic math to combine motions and is easier to drive straight.
+            // - This uses basic math to combine motions and is easier to drive straight
             double drive = -gamepad1.left_stick_y;
             double turn  =  gamepad1.right_stick_x;
             leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;

@@ -61,7 +61,7 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
     private boolean oldRightBumper;
 
     /**
-     * The variable to store our instance of the AprilTag processor.
+     * The variable to store our instance of the AprilTag processor
      */
     private AprilTagProcessor aprilTag;
 
@@ -75,7 +75,7 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
 
         initAprilTag();
 
-        // Wait for the DS start button to be touched.
+        // Wait for the DS start button to be touched
         telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
         telemetry.addData(">", "Touch START to start OpMode");
         telemetry.update();
@@ -104,17 +104,17 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
             }
         }
 
-        // Save more CPU resources when camera is no longer needed.
+        // Save more CPU resources when camera is no longer needed
         visionPortal.close();
 
     }   // end runOpMode()
 
     /**
-     * Initialize the AprilTag processor.
+     * Initialize the AprilTag processor
      */
     private void initAprilTag() {
 
-        // Create the AprilTag processor by using a builder.
+        // Create the AprilTag processor by using a builder
         aprilTag = new AprilTagProcessor.Builder().build();
 
         webcam1 = hardwareMap.get(WebcamName.class, "Webcam 1");
@@ -122,7 +122,7 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
         CameraName switchableCamera = ClassFactory.getInstance()
             .getCameraManager().nameForSwitchableCamera(webcam1, webcam2);
 
-        // Create the vision portal by using a builder.
+        // Create the vision portal by using a builder
         visionPortal = new VisionPortal.Builder()
             .setCamera(switchableCamera)
             .addProcessor(aprilTag)
@@ -146,14 +146,14 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
     }   // end method telemetryCameraSwitching()
 
     /**
-     * Add telemetry about AprilTag detections.
+     * Add telemetry about AprilTag detections
      */
     private void telemetryAprilTag() {
 
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
         telemetry.addData("# AprilTags Detected", currentDetections.size());
 
-        // Step through the list of detections and display info for each one.
+        // Step through the list of detections and display info for each one
         for (AprilTagDetection detection : currentDetections) {
             if (detection.metadata != null) {
                 telemetry.addLine(String.format("\n==== (ID %d) %s", detection.id, detection.metadata.name));
@@ -166,7 +166,7 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
             }
         }   // end for() loop
 
-        // Add "key" information to telemetry
+        // Add "key" information to telemetry.
         telemetry.addLine("\nkey:\nXYZ = X (Right), Y (Forward), Z (Up) dist.");
         telemetry.addLine("PRY = Pitch, Roll & Yaw (XYZ Rotation)");
         telemetry.addLine("RBE = Range, Bearing & Elevation");

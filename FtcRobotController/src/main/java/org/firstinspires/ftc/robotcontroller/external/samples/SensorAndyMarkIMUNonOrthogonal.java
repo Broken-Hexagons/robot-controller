@@ -63,19 +63,19 @@ import static com.qualcomm.hardware.andymark.AndyMarkIMUOrientationOnRobot.xyzOr
  * this folder.
  *
  * But... If your AndyMark IMU is mounted Non-Orthogonally, you must specify one or more rotational
- * angles that transform a "Default" IMU orientation into your desired orientation.  That is what is
+ * angles that transform a "Default" IMU orientation into your desired orientation. That is what is
  * illustrated here.
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
+ * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  *
  * Finally, edit this OpMode to use at least one angle around an axis to orient your AndyMark IMU.
  */
 @TeleOp(name = "Sensor: AndyMark IMU Non-Orthogonal", group = "Sensor")
-@Disabled     // Comment this out to add to the OpMode list
+@Disabled     // Comment this out to add to the OpMode list.
 public class SensorAndyMarkIMUNonOrthogonal extends LinearOpMode
 {
-    // The AndyMark IMU sensor object
+    // The AndyMark IMU sensor object.
     private IMU imu;
 
     //----------------------------------------------------------------------------------------------
@@ -96,18 +96,18 @@ public class SensorAndyMarkIMUNonOrthogonal extends LinearOpMode
          *
          * The starting point for these rotations is the "Default" IMU orientation, which is:
          * 1) IMU laying flat on a horizontal surface, with the AndyMark logo facing up.
-         * 2) Rotated such that the I2C port is facing forward on the robot.
+         * 2) Rotated such that the I2C port is facing forward on the robot
          *
          * The order that the rotations are performed matters, so this sample shows doing them in
          * the order X, Y, then Z.
          * For specifying non-orthogonal IMU mounting orientations, we must temporarily use axes
          * defined relative to the AndyMark IMU itself, instead of the usual Robot Coordinate System
-         * axes used for the results the AndyMark IMU gives us. In the starting orientation, the
+         * axes used for the results the AndyMark IMU gives us.  In the starting orientation, the
          * AndyMark IMU axes are aligned with the Robot Coordinate System:
          *
          * X Axis:  Starting at center of IMU, pointing out towards the side.
          * Y Axis:  Starting at center of IMU, pointing out towards I2C port.
-         * Z Axis:  Starting at center of IMU, pointing up through the AndyMark logo.
+         * Z Axis:  Starting at center of IMU, pointing up through the AndyMark logo
          *
          * Positive rotation is defined by right-hand rule with thumb pointing in +ve direction on
          * axis.
@@ -116,7 +116,7 @@ public class SensorAndyMarkIMUNonOrthogonal extends LinearOpMode
          *
          * ----------------------------------------------------------------------------------------------------------------------------------
          * Example A) Assume that the AndyMark IMU is mounted on a sloped plate at the back of the
-         * robot, with the I2C port coming out the top of the AndyMark IMU. The plate is tilted UP
+         * robot, with the I2C port coming out the top of the AndyMark IMU.  The plate is tilted UP
          * 60 degrees from horizontal.
          *
          * To get the "Default" IMU into this configuration you would just need a single rotation.
@@ -140,7 +140,7 @@ public class SensorAndyMarkIMUNonOrthogonal extends LinearOpMode
          * ----------------------------------------------------------------------------------------------------------------------------------
          * Example C) Assume that the AndyMark IMU is mounted on a vertical plate on the right side
          * of the robot, with the AndyMark logo facing out, and the AndyMark IMU rotated so that the
-         * I2C port is facing down 30 degrees towards the back wheels of the robot.
+         * I2C port is facing down 30 degrees towards the back wheels of the robot
          *
          * To get the "Default" IMU into this configuration will require several rotations.
          * 1) Rotate the AndyMark IMU +90 degrees around the X axis to get it standing upright with
@@ -155,9 +155,9 @@ public class SensorAndyMarkIMUNonOrthogonal extends LinearOpMode
 
         // The next three lines define the desired axis rotations.
         // To Do: EDIT these values to match YOUR mounting configuration.
-        double xRotation = 0;  // enter the desired X rotation angle here.
-        double yRotation = 0;  // enter the desired Y rotation angle here.
-        double zRotation = 0;  // enter the desired Z rotation angle here.
+        double xRotation = 0;  // enter the desired X rotation angle here
+        double yRotation = 0;  // enter the desired Y rotation angle here
+        double zRotation = 0;  // enter the desired Z rotation angle here
 
         Orientation imuRotation = xyzOrientation(xRotation, yRotation, zRotation);
 
@@ -177,7 +177,7 @@ public class SensorAndyMarkIMUNonOrthogonal extends LinearOpMode
                 telemetry.addData("Yaw", "Press Y (triangle) on Gamepad to reset\n");
             }
 
-            // Retrieve rotational angles and velocities.
+            // Retrieve rotational angles and velocities
             YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
             AngularVelocity angularVelocity = imu.getRobotAngularVelocity(AngleUnit.DEGREES);
 

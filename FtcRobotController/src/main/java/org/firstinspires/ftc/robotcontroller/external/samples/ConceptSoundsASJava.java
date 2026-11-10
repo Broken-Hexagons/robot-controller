@@ -63,7 +63,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  *
  *     If you wish to use the sounds provided for this sample, they are located in:
  *     <project root>/FtcRobotController/src/main/res/raw
- *     You can copy and paste the entire 'raw' folder using Android Studio.
+ *     You can copy and paste the entire 'raw' folder using Android Studio
  *
  */
 
@@ -71,20 +71,20 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @Disabled
 public class ConceptSoundsASJava extends LinearOpMode {
 
-    // Declare OpMode members.
+    // Declare OpMode members
     private boolean goldFound;      // Sound file present flags
     private boolean silverFound;
 
-    private boolean isX = false;    // Gamepad button state variables
+    private boolean isX = false;    // Gamepad button state variables.
     private boolean isB = false;
 
-    private boolean wasX = false;   // Gamepad button history variables
+    private boolean wasX = false;   // Gamepad button history variables.
     private boolean WasB = false;
 
     @Override
     public void runOpMode() {
 
-        // Determine Resource IDs for sounds built into the RC application.
+        // Determine Resource IDs for sounds built into the RC application
         int silverSoundID = hardwareMap.appContext.getResources().getIdentifier("silver", "raw", hardwareMap.appContext.getPackageName());
         int goldSoundID   = hardwareMap.appContext.getResources().getIdentifier("gold",   "raw", hardwareMap.appContext.getPackageName());
 
@@ -96,7 +96,7 @@ public class ConceptSoundsASJava extends LinearOpMode {
         if (silverSoundID != 0)
             silverFound = SoundPlayer.getInstance().preload(hardwareMap.appContext, silverSoundID);
 
-        // Display sound status
+        // Display sound status.
         telemetry.addData("gold resource",   goldFound ?   "Found" : "NOT found\n Add gold.wav to /src/main/res/raw" );
         telemetry.addData("silver resource", silverFound ? "Found" : "Not found\n Add silver.wav to /src/main/res/raw" );
 

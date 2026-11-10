@@ -67,25 +67,25 @@ public class ConceptScanServo extends LinearOpMode {
     public void runOpMode() {
 
         // Connect to servo (Assume Robot Left Hand)
-        // Change the text in quotes to match any servo name on your robot.
+        // Change the text in quotes to match any servo name on your robot
         servo = hardwareMap.get(Servo.class, "left_hand");
 
-        // Wait for the start button
+        // Wait for the start button.
         telemetry.addData(">", "Press Start to scan Servo." );
         telemetry.update();
         waitForStart();
 
 
-        // Scan servo till stop pressed.
+        // Scan servo till stop pressed
         while(opModeIsActive()){
 
-            // slew the servo, according to the rampUp (direction) variable.
+            // slew the servo, according to the rampUp (direction) variable
             if (rampUp) {
                 // Keep stepping up until we hit the max value.
                 position += INCREMENT ;
                 if (position >= MAX_POS ) {
                     position = MAX_POS;
-                    rampUp = !rampUp;   // Switch ramp direction
+                    rampUp = !rampUp;   // Switch ramp direction.
                 }
             }
             else {
@@ -93,7 +93,7 @@ public class ConceptScanServo extends LinearOpMode {
                 position -= INCREMENT ;
                 if (position <= MIN_POS ) {
                     position = MIN_POS;
-                    rampUp = !rampUp;  // Switch ramp direction
+                    rampUp = !rampUp;  // Switch ramp direction.
                 }
             }
 

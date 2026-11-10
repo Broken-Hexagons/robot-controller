@@ -73,16 +73,16 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
  *    I2cPortFacingDirection
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
+ * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  *
  * Finally, choose the two correct parameters to define how your AndyMark IMU is mounted and edit
- * this OpMode to use those parameters.
+ * this OpMode to use those parameters
  */
 @TeleOp(name = "Sensor: AndyMark IMU Orthogonal", group = "Sensor")
-@Disabled   // Comment this out to add to the OpMode list
+@Disabled   // Comment this out to add to the OpMode list.
 public class SensorAndyMarkIMUOrthogonal extends LinearOpMode
 {
-    // The AndyMark IMU sensor object
+    // The AndyMark IMU sensor object.
     private IMU imu;
 
     //----------------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ public class SensorAndyMarkIMUOrthogonal extends LinearOpMode
          */
 
         /* The next two lines define the IMU orientation.
-         * To Do:  EDIT these two lines to match YOUR mounting configuration.
+         * To Do:  EDIT these two lines to match YOUR mounting configuration
          */
         LogoFacingDirection logoDirection = LogoFacingDirection.UP;
         I2cPortFacingDirection i2cDirection = I2cPortFacingDirection.FORWARD;
@@ -128,7 +128,7 @@ public class SensorAndyMarkIMUOrthogonal extends LinearOpMode
                 telemetry.addData("Yaw", "Press Y (triangle) on Gamepad to reset\n");
             }
 
-            // Retrieve rotational angles and velocities.
+            // Retrieve rotational angles and velocities
             YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
             AngularVelocity angularVelocity = imu.getRobotAngularVelocity(AngleUnit.DEGREES);
 
