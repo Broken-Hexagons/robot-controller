@@ -59,7 +59,7 @@ public class ConceptBlackboard extends OpMode {
      */
     @Override
     public void init() {
-        // This gets us what is in the blackboard or the default if it isn't in there
+        // This gets us what is in the blackboard or the default if it isn't in there.
         Object timesStarted = blackboard.getOrDefault(TIMES_STARTED_KEY, 0);
         blackboard.put(TIMES_STARTED_KEY, (int) timesStarted + 1);
 

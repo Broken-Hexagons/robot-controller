@@ -59,7 +59,7 @@ public class RobotTeleopMecanumFieldRelativeDrive extends OpMode {
     DcMotor backLeftDrive;
     DcMotor backRightDrive;
 
-    // This declares the IMU needed to get the current direction the robot is facing.
+    // This declares the IMU needed to get the current direction the robot is facing
     IMU imu;
 
     @Override
@@ -114,13 +114,13 @@ public class RobotTeleopMecanumFieldRelativeDrive extends OpMode {
         }
     }
 
-    // This routine drives the robot field relative.
+    // This routine drives the robot field relative
     private void driveFieldRelative(double forward, double right, double rotate) {
         // First, convert direction being asked to drive to polar coordinates
         double theta = Math.atan2(forward, right);
         double r = Math.hypot(right, forward);
 
-        // Second, rotate angle by the angle the robot is pointing.
+        // Second, rotate angle by the angle the robot is pointing
         theta = AngleUnit.normalizeRadians(theta -
                 imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
 
@@ -135,7 +135,7 @@ public class RobotTeleopMecanumFieldRelativeDrive extends OpMode {
     // Thanks to FTC16072 for sharing this code!!
     public void drive(double forward, double right, double rotate) {
         // This calculates the power needed for each wheel based on the amount of forward,
-        // strafe right, and rotate.
+        // strafe right, and rotate
         double frontLeftPower = forward + right + rotate;
         double frontRightPower = forward - right - rotate;
         double backRightPower = forward + right - rotate;

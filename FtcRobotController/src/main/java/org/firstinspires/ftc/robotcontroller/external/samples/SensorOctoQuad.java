@@ -66,10 +66,10 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @TeleOp(name = "OctoQuad Basic", group="OctoQuad")
 public class SensorOctoQuad extends LinearOpMode {
 
-    // Identify which encoder OctoQuad inputs are connected to each odometry pod
-    private final int ODO_LEFT  = 0; // Facing forward direction on left side of robot.
-    private final int ODO_RIGHT = 1; // Facing forward direction on right side or robot.
-    private final int ODO_PERP  = 2; // Facing perpendicular direction at the center of the robot.
+    // Identify which encoder OctoQuad inputs are connected to each odometry pod.
+    private final int ODO_LEFT  = 0; // Facing forward direction on left side of robot
+    private final int ODO_RIGHT = 1; // Facing forward direction on right side or robot
+    private final int ODO_PERP  = 2; // Facing perpendicular direction at the center of the robot
 
     // Declare the OctoQuad object;
     private OctoQuad    octoquad;
@@ -82,24 +82,24 @@ public class SensorOctoQuad extends LinearOpMode {
     private int         velPerp;
 
     /**
-     * This function is executed when this OpMode is selected from the Driver Station
+     * This function is executed when this OpMode is selected from the Driver Station.
      */
     @Override
     public void runOpMode() {
 
-        // Connect to OctoQuad by referring to its name in the Robot Configuration
+        // Connect to OctoQuad by referring to its name in the Robot Configuration.
         octoquad = hardwareMap.get(OctoQuad.class, "octoquad");
 
-        // Read the Firmware Revision number from the OctoQuad and display it as telemetry
+        // Read the Firmware Revision number from the OctoQuad and display it as telemetry.
         telemetry.addData("OctoQuad Firmware Version ", octoquad.getFirmwareVersion());
 
         // Reverse the count-direction of any encoder that is not what you require.
-        // e.g. if you push the robot forward and the left encoder counts down, then reverse it
+        // e.g. if you push the robot forward and the left encoder counts down, then reverse it.
         octoquad.setSingleEncoderDirection(ODO_LEFT,  OctoQuad.EncoderDirection.REVERSE);
         octoquad.setSingleEncoderDirection(ODO_RIGHT, OctoQuad.EncoderDirection.FORWARD);
         octoquad.setSingleEncoderDirection(ODO_PERP,  OctoQuad.EncoderDirection.FORWARD);
 
-        // set the interval over which pulses are counted to determine velocity
+        // set the interval over which pulses are counted to determine velocity.
         octoquad.setAllVelocitySampleIntervals(50);  // 50 mSec means 20 velocity updates per second.
 
         // Save any changes that are made, just in case there is a sensor power glitch.
@@ -110,7 +110,7 @@ public class SensorOctoQuad extends LinearOpMode {
 
         waitForStart();
 
-        // Configure the telemetry for optimal display of data
+        // Configure the telemetry for optimal display of data.
         telemetry.setDisplayFormat(Telemetry.DisplayFormat.MONOSPACE);
         telemetry.setMsTransmissionInterval(100);
 
@@ -127,10 +127,10 @@ public class SensorOctoQuad extends LinearOpMode {
                 octoquad.resetAllPositions();
             }
 
-            // Read all the encoder data. Load into local members.
+            // Read all the encoder data.  Load into local members.
             readOdometryPods();
 
-            // Display the values
+            // Display the values.
             telemetry.addData("Left  P", "%7d   V :%6d CPS ", posLeft, velLeft);
             telemetry.addData("Right P", "%7d   V :%6d CPS ", posRight, velRight);
             telemetry.addData("Perp  P", "%7d   V :%6d CPS ", posPerp, velPerp);
@@ -143,14 +143,14 @@ public class SensorOctoQuad extends LinearOpMode {
         //  This can be achieved in one of two ways:
         //   1) by doing a block data read once per control cycle
         //  or
-        //   2) by doing individual caching reads, but only reading each encoder value ONCE per cycle
+        //   2) by doing individual caching reads, but only reading each encoder value ONCE per cycle.
         //
         // Since method 2 is simplest, we will use it here.
         posLeft  = octoquad.readSinglePosition_Caching(ODO_LEFT);
         posRight = octoquad.readSinglePosition_Caching(ODO_RIGHT);
         posPerp  = octoquad.readSinglePosition_Caching(ODO_PERP);
-        velLeft  = octoquad.readSingleVelocity_Caching(ODO_LEFT)  * 20;  // scale up to cps.
-        velRight = octoquad.readSingleVelocity_Caching(ODO_RIGHT) * 20;  // scale up to cps.
-        velPerp  = octoquad.readSingleVelocity_Caching(ODO_PERP)  * 20;  // scale up to cps.
+        velLeft  = octoquad.readSingleVelocity_Caching(ODO_LEFT)  * 20;  // scale up to cps
+        velRight = octoquad.readSingleVelocity_Caching(ODO_RIGHT) * 20;  // scale up to cps
+        velPerp  = octoquad.readSingleVelocity_Caching(ODO_PERP)  * 20;  // scale up to cps
     }
 }

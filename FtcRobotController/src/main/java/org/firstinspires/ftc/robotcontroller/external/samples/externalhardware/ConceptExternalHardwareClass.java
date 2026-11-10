@@ -61,7 +61,7 @@ import com.qualcomm.robotcore.util.Range;
  *  Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  *
  *  In OnBot Java, add a new OpMode, select this sample, and select TeleOp.
- *  Also add another new file named RobotHardware.java, select the sample with that name, and select Not an OpMode
+ *  Also add another new file named RobotHardware.java, select the sample with that name, and select Not an OpMode.
  */
 
 @TeleOp(name="Concept: Robot Hardware Class", group="Robot")
@@ -69,7 +69,7 @@ import com.qualcomm.robotcore.util.Range;
 public class ConceptExternalHardwareClass extends LinearOpMode {
 
     // Create a RobotHardware object to be used to access robot hardware.
-    // Prefix any hardware functions with "robot." to access this class
+    // Prefix any hardware functions with "robot." to access this class.
     RobotHardware   robot       = new RobotHardware(this);
 
     @Override
@@ -91,17 +91,17 @@ public class ConceptExternalHardwareClass extends LinearOpMode {
 
             // Run wheels in POV mode (note: The joystick goes negative when pushed forward, so negate it)
             // In this mode the Left stick moves the robot fwd and back, the Right stick turns left and right.
-            // This way it's also easy to just drive straight, or just turn
+            // This way it's also easy to just drive straight, or just turn.
             drive = -gamepad1.left_stick_y;
             turn  =  gamepad1.right_stick_x;
 
-            // Combine drive and turn for blended motion.  Use RobotHardware class
+            // Combine drive and turn for blended motion. Use RobotHardware class
             robot.driveRobot(drive, turn);
 
             // Use gamepad left & right Bumpers to open and close the claw
             // Use the SERVO constants defined in RobotHardware class.
             // Each time around the loop, the servos will move by a small amount.
-            // Limit the total offset to half of the full travel range.
+            // Limit the total offset to half of the full travel range
             if (gamepad1.right_bumper)
                 handOffset += robot.HAND_SPEED;
             else if (gamepad1.left_bumper)
@@ -135,7 +135,7 @@ public class ConceptExternalHardwareClass extends LinearOpMode {
             telemetry.addData("Hand Position",  "Offset = %.2f", handOffset);
             telemetry.update();
 
-            // Pace this loop so hands move at a reasonable speed
+            // Pace this loop so hands move at a reasonable speed.
             sleep(50);
         }
     }

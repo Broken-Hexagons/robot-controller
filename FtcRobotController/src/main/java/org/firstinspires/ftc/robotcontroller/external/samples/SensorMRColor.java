@@ -63,7 +63,7 @@ public class SensorMRColor extends LinearOpMode {
     // hsvValues is an array that will hold the hue, saturation, and value information.
     float hsvValues[] = {0F,0F,0F};
 
-    // values is a reference to the hsvValues array
+    // values is a reference to the hsvValues array.
     final float values[] = hsvValues;
 
     // get a reference to the RelativeLayout so we can change the background
@@ -78,10 +78,10 @@ public class SensorMRColor extends LinearOpMode {
     // bLedOn represents the state of the LED.
     boolean bLedOn = true;
 
-    // get a reference to our ColorSensor object
+    // get a reference to our ColorSensor object.
     colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
 
-    // Set the LED in the beginning.
+    // Set the LED in the beginning
     colorSensor.enableLed(bLedOn);
 
     // wait for the start button to be pressed.
@@ -97,18 +97,18 @@ public class SensorMRColor extends LinearOpMode {
       // check for button state transitions.
       if (bCurrState && (bCurrState != bPrevState))  {
 
-        // button is transitioning to a pressed state.  So Toggle LED.
+        // button is transitioning to a pressed state. So Toggle LED
         bLedOn = !bLedOn;
         colorSensor.enableLed(bLedOn);
       }
 
-      // update previous state variable
+      // update previous state variable.
       bPrevState = bCurrState;
 
       // convert the RGB values to HSV values.
       Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
 
-      // send the info back to driver station using telemetry function
+      // send the info back to driver station using telemetry function.
       telemetry.addData("LED", bLedOn ? "On" : "Off");
       telemetry.addData("Clear", colorSensor.alpha());
       telemetry.addData("Red  ", colorSensor.red());
@@ -118,7 +118,7 @@ public class SensorMRColor extends LinearOpMode {
 
       // change the background color to match the color detected by the RGB sensor.
       // pass a reference to the hue, saturation, and value array as an argument
-      // to the HSVToColor method
+      // to the HSVToColor method.
       relativeLayout.post(new Runnable() {
         public void run() {
           relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));

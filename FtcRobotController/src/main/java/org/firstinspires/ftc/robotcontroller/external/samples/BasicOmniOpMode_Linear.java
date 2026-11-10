@@ -78,7 +78,7 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
     public void runOpMode() {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
-        // to the names assigned during the robot configuration step on the DS or RC devices
+        // to the names assigned during the robot configuration step on the DS or RC devices.
         frontLeftDrive = hardwareMap.get(DcMotor.class, "front_left_drive");
         backLeftDrive = hardwareMap.get(DcMotor.class, "back_left_drive");
         frontRightDrive = hardwareMap.get(DcMotor.class, "front_right_drive");
@@ -90,7 +90,7 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
         // Most robots need the motors on one side to be reversed to drive forward.
         // The motor reversals shown here are for a "direct drive" robot (the wheels turn the same direction as the motor shaft)
         // If your robot has additional gear reductions or uses a right-angled drive, it's important to ensure
-        // that your motors are turning in the correct direction. So, start out with the reversals here, BUT
+        // that your motors are turning in the correct direction.  So, start out with the reversals here, BUT
         // when you first test your robot, push the left joystick forward and observe the direction the wheels turn.
         // Reverse the direction (flip FORWARD <-> REVERSE ) of any wheel that runs backward
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
@@ -110,7 +110,7 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
         while (opModeIsActive()) {
             double max;
 
-            // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate
+            // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
             double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
             double lateral =  gamepad1.left_stick_x;
             double yaw     =  gamepad1.right_stick_x;
@@ -143,7 +143,7 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
             //      by adjusting your Robot Configuration if necessary.
             //   2) Then make sure they run in the correct direction by modifying the
             //      the setDirection() calls above.
-            // Once the correct motors move in the correct direction re-comment this code
+            // Once the correct motors move in the correct direction re-comment this code.
 
             /*
             frontLeftPower  = gamepad1.x ? 1.0 : 0.0;  // X gamepad

@@ -60,7 +60,7 @@ public class SensorMROpticalDistance extends LinearOpMode {
     // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
     while (opModeIsActive()) {
 
-      // send the info back to driver station using telemetry function
+      // send the info back to driver station using telemetry function.
       telemetry.addData("Raw",    odsSensor.getRawLightDetected());
       telemetry.addData("Normal", odsSensor.getLightDetected());
 

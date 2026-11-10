@@ -60,7 +60,7 @@ import java.util.concurrent.TimeUnit;
  * HDMI monitor into the Control Hub HDMI port, or use an external viewer program like ScrCpy (https://scrcpy.org/)
  *
  * Use Android Studio to Copy this Class, and Paste it into the TeamCode/src/main/java/org/firstinspires/ftc/teamcode folder.
- * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
+ * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
  */
 
 @TeleOp(name="Optimize AprilTag Exposure", group = "Concept")
@@ -90,13 +90,13 @@ public class ConceptAprilTagOptimizeExposure extends LinearOpMode
         // Initialize the Apriltag Detection process
         initAprilTag();
 
-        // Establish Min and Max Gains and Exposure. Then set a low exposure with high gain.
+        // Establish Min and Max Gains and Exposure.  Then set a low exposure with high gain
         getCameraSetting();
         myExposure = Math.min(5, minExposure);
         myGain = maxGain;
         setManualExposure(myExposure, myGain);
 
-        // Wait for the match to begin
+        // Wait for the match to begin.
         telemetry.addData("Camera preview on/off", "3 dots, Camera Stream");
         telemetry.addData(">", "Touch START to start OpMode");
         telemetry.update();
@@ -135,7 +135,7 @@ public class ConceptAprilTagOptimizeExposure extends LinearOpMode
                 setManualExposure(myExposure, myGain);
             }
 
-            // look for clicks to change the gain.
+            // look for clicks to change the gain
             if (thisGainUp && !lastGainUp) {
                 myGain = Range.clip(myGain + 1, minGain, maxGain );
                 setManualExposure(myExposure, myGain);
@@ -154,13 +154,13 @@ public class ConceptAprilTagOptimizeExposure extends LinearOpMode
     }
 
     /**
-     * Initialize the AprilTag processor
+     * Initialize the AprilTag processor.
      */
     private void initAprilTag() {
-        // Create the AprilTag processor by using a builder
+        // Create the AprilTag processor by using a builder.
         aprilTag = new AprilTagProcessor.Builder().build();
 
-        // Create the WEBCAM vision portal by using a builder
+        // Create the WEBCAM vision portal by using a builder.
         visionPortal = new VisionPortal.Builder()
                 .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
                 .addProcessor(aprilTag)
@@ -178,7 +178,7 @@ public class ConceptAprilTagOptimizeExposure extends LinearOpMode
             return false;
         }
 
-        // Wait for the camera to be open.
+        // Wait for the camera to be open
         if (visionPortal.getCameraState() != VisionPortal.CameraState.STREAMING) {
             telemetry.addData("Camera", "Waiting");
             telemetry.update();
@@ -189,10 +189,10 @@ public class ConceptAprilTagOptimizeExposure extends LinearOpMode
             telemetry.update();
         }
 
-        // Set camera controls unless we are stopping
+        // Set camera controls unless we are stopping.
         if (!isStopRequested())
         {
-            // Set exposure.  Make sure we are in Manual Mode for these values to take effect
+            // Set exposure.  Make sure we are in Manual Mode for these values to take effect.
             ExposureControl exposureControl = visionPortal.getCameraControl(ExposureControl.class);
             if (exposureControl.getMode() != ExposureControl.Mode.Manual) {
                 exposureControl.setMode(ExposureControl.Mode.Manual);
@@ -221,7 +221,7 @@ public class ConceptAprilTagOptimizeExposure extends LinearOpMode
             return;
         }
 
-        // Wait for the camera to be open.
+        // Wait for the camera to be open
         if (visionPortal.getCameraState() != VisionPortal.CameraState.STREAMING) {
             telemetry.addData("Camera", "Waiting");
             telemetry.update();
@@ -232,7 +232,7 @@ public class ConceptAprilTagOptimizeExposure extends LinearOpMode
             telemetry.update();
         }
 
-        // Get camera control values unless we are stopping
+        // Get camera control values unless we are stopping.
         if (!isStopRequested()) {
             ExposureControl exposureControl = visionPortal.getCameraControl(ExposureControl.class);
             minExposure = (int)exposureControl.getMinExposure(TimeUnit.MILLISECONDS) + 1;

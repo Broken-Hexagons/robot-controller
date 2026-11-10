@@ -115,7 +115,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
         optionExit = new TelemetryMenu.StaticClickableOption("Exit configuration menu")
         {
             @Override
-            void onClick() // called on OpMode thread.
+            void onClick() // called on OpMode thread
             {
                 requestOpModeStop();
             }
@@ -127,7 +127,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
         menuHwInfo.addChild(new TelemetryMenu.StaticItem("Board Firmware: v" + octoquad.getFirmwareVersion()));
         //menuHwInfo.addChild(new TelemetryMenu.StaticItem("Board unique ID: FIXME"));
 
-        for(int i = 0; i < OctoQuad.NUM_ENCODERS; i += 1)
+        for(int i = 0; i < OctoQuad.NUM_ENCODERS; i++)
         {
             optionsEncoderDirections[i] = new TelemetryMenu.BooleanOption(
                     String.format("Encoder %d direction", i),
@@ -264,7 +264,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
 
     void sendSettingsToRam()
     {
-        for(int i = 0; i < OctoQuad.NUM_ENCODERS; i += 1)
+        for(int i = 0; i < OctoQuad.NUM_ENCODERS; i++)
         {
             octoquad.setSingleEncoderDirection(i, optionsEncoderDirections[i].getValue() ? OctoQuad.EncoderDirection.REVERSE : OctoQuad.EncoderDirection.FORWARD);
             octoquad.setSingleVelocitySampleInterval(i, optionsVelocityIntervals[i].getValue());
@@ -282,7 +282,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
     }
 
     /*
-     * Copyright (c) 2023 OpenFTC Team.
+     * Copyright (c) 2023 OpenFTC Team
      *
      * Permission is hereby granted, free of charge, to any person obtaining a copy
      * of this software and associated documentation files (the "Software"), to deal
@@ -369,10 +369,10 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
                 }
             }
 
-            // Up and down navigate the current selection pointer.
+            // Up and down navigate the current selection pointer
             if (dpadUp && !dpadUpPrev) // rising edge
             {
-                selectedIdx--; // Move selection pointer up.
+                selectedIdx--; // Move selection pointer up
             }
             else if (dpadDn && !dpadDnPrev) // rising edge
             {
@@ -389,23 +389,23 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
                 selectedIdx = 0;
             }
 
-            // Select: either enter submenu or input to option.
+            // Select: either enter submenu or input to option
             else if (x && !xPrev) // rising edge
             {
-                // Select up element.
+                // Select up element
                 if (currentSelection instanceof SpecialUpElement)
                 {
                     // We can only go up if we're not at the root level
                     if (currentLevel != root)
                     {
-                        // Restore selection pointer to where it was before.
+                        // Restore selection pointer to where it was before
                         selectedIdx = selectedIdxStack.pop();
 
-                        // Change to the parent level.
+                        // Change to the parent level
                         currentLevel = currentLevel.parent();
                     }
                 }
-                // Input to option.
+                // Input to option
                 else if (currentSelection instanceof OptionElement)
                 {
                     ((OptionElement) currentSelection).onClick();
@@ -414,11 +414,11 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
                 else if (currentSelection instanceof MenuElement)
                 {
                     // Save our current selection pointer so we can restore it
-                    // later if the user navigates back up a level.
+                    // later if the user navigates back up a level
                     selectedIdxStack.push(selectedIdx);
 
                     // We have no idea what's in the submenu :monkey: so best to
-                    // just set the selection pointer to the first element.
+                    // just set the selection pointer to the first element
                     selectedIdx = 0;
 
                     // Now the current level becomes the submenu that the selection
@@ -427,16 +427,16 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
                 }
             }
 
-            // Go up a level.
+            // Go up a level
             else if (lb && !lbPrev)
             {
                 // We can only go up if we're not at the root level
                 if (currentLevel != root)
                 {
-                    // Restore selection pointer to where it was before.
+                    // Restore selection pointer to where it was before
                     selectedIdx = selectedIdxStack.pop();
 
-                    // Change to the parent level.
+                    // Change to the parent level
                     currentLevel = currentLevel.parent();
                 }
             }
@@ -473,7 +473,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
                 {
                     builder.append("[<font color=green face=monospace>•</font>] ");
                 }
-                // Otherwise, just put an empty box.
+                // Otherwise, just put an empty box
                 else
                 {
                     builder.append("[ ] ");
@@ -483,7 +483,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
                 Element e = children.get(i);
 
                 // If it's pointing at a submenu, indicate that it's a submenu to the user
-                // by prefixing "> " to the name
+                // by prefixing "> " to the name.
                 if (e instanceof MenuElement)
                 {
                     builder.append("> ");
@@ -492,7 +492,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
                 // Finally, add the element's name
                 builder.append(e.getDisplayText());
 
-                // We musn't forget the newline.
+                // We musn't forget the newline
                 builder.append("\n");
             }
 
@@ -520,7 +520,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
             {
                 this.name = name;
 
-                // If it's not the root menu, we add the up one level option as the first element.
+                // If it's not the root menu, we add the up one level option as the first element
                 if (!isRoot)
                 {
                     children.add(new SpecialUpElement());
@@ -565,7 +565,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
         public static abstract class OptionElement extends Element
         {
             /**
-             * Override this to get notified when the element is clicked.
+             * Override this to get notified when the element is clicked
              */
             void onClick() {}
 
@@ -601,7 +601,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
             @Override
             public void onLeftInput()
             {
-                idx += 1;
+                idx++;
 
                 if(idx > e.length-1)
                 {
@@ -667,7 +667,7 @@ public class UtilityOctoQuadConfigMenu extends LinearOpMode
             @Override
             public void onRightInput()
             {
-                i += 1;
+                i++;
 
                 if(i > max)
                 {

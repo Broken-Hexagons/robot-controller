@@ -216,7 +216,7 @@ public class FtcRobotControllerActivity extends Activity
 
       if (usbDevice != null) {  // paranoia
         // We might get attachment notifications before the event loop is set up, so
-        // we hold on to them and pass them along only when we're good and ready
+        // we hold on to them and pass them along only when we're good and ready.
         if (receivedUsbAttachmentNotifications != null) { // *total* paranoia
           receivedUsbAttachmentNotifications.add(usbDevice);
           passReceivedUsbAttachmentsToEventLoop();
@@ -245,7 +245,7 @@ public class FtcRobotControllerActivity extends Activity
 
   /**
    * There are cases where a permission may be revoked and the system restart will restart the
-   * FtcRobotControllerActivity, instead of the launch activity. Detect when that happens, and throw
+   * FtcRobotControllerActivity, instead of the launch activity.  Detect when that happens, and throw
    * the device back to the permission validator activity.
    */
   protected boolean enforcePermissionValidator() {
@@ -275,7 +275,7 @@ public class FtcRobotControllerActivity extends Activity
 
     RobotLog.onApplicationStart();  // robustify against onCreate() following onDestroy() but using the same app instance, which apparently does happen
     RobotLog.vv(TAG, "onCreate()");
-    ThemedActivity.appAppThemeToActivity(getTag(), this); // do this way instead of inherit to help AppInventor.
+    ThemedActivity.appAppThemeToActivity(getTag(), this); // do this way instead of inherit to help AppInventor
 
     // Oddly, sometimes after a crash & restart the root activity will be something unexpected, like from the before crash? We don't yet understand
     RobotLog.vv(TAG, "rootActivity is of class %s", AppUtil.getInstance().getRootActivity().getClass().getSimpleName());
@@ -348,7 +348,7 @@ public class FtcRobotControllerActivity extends Activity
      * Paranoia as the ClassManagerFactory requires EXTERNAL_STORAGE permissions
      * and we've seen on the DS where the finish() call above does not short-circuit
      * the onCreate() call for the activity and then we crash here because we don't
-     * have permissions.  So...
+     * have permissions. So...
      */
     if (permissionsValidated) {
       ClassManager.getInstance().setOnBotJavaClassHelper(onBotJavaHelper);
@@ -457,7 +457,7 @@ public class FtcRobotControllerActivity extends Activity
   @Override
   protected void onStop() {
     // Note: this gets called even when the configuration editor is launched. That is, it gets
-    // called surprisingly often.  So, we don't actually do much here.
+    // called surprisingly often. So, we don't actually do much here.
     super.onStop();
     RobotLog.vv(TAG, "onStop()");
   }
@@ -499,8 +499,8 @@ public class FtcRobotControllerActivity extends Activity
   }
 
   protected void readNetworkType() {
-    // Control hubs are always running the access point model. Everything else, for the time
-    // being always runs the Wi-Fi Direct model
+    // Control hubs are always running the access point model.  Everything else, for the time
+    // being always runs the Wi-Fi Direct model.
     if (Device.isRevControlHub() == true) {
       networkType = NetworkType.RCWIRELESSAP;
     } else {
@@ -595,7 +595,7 @@ public class FtcRobotControllerActivity extends Activity
       //backstack for some reason.
       finishAffinity();
 
-      //For lollipop and up, we can clear ourselves from the recents list too.
+      //For lollipop and up, we can clear ourselves from the recents list too
       if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
         ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
         List<ActivityManager.AppTask> tasks = manager.getAppTasks();
@@ -605,10 +605,10 @@ public class FtcRobotControllerActivity extends Activity
         }
       }
 
-      // Allow the user to use the Control Hub operating system's UI, instead of relaunching the app.
+      // Allow the user to use the Control Hub operating system's UI, instead of relaunching the app
       AppAliveNotifier.getInstance().disableAppWatchdogUntilNextAppStart();
 
-      //Finally, nuke the VM from orbit.
+      //Finally, nuke the VM from orbit
       AppUtil.getInstance().exitApplication();
 
       return true;
@@ -620,7 +620,7 @@ public class FtcRobotControllerActivity extends Activity
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
-    // don't destroy assets on screen rotation.
+    // don't destroy assets on screen rotation
     updateMonitorLayout(newConfig);
   }
 
@@ -640,7 +640,7 @@ public class FtcRobotControllerActivity extends Activity
     } else {
       // When the phone is portrait, lay out the monitor views vertically.
       monitorContainer.setOrientation(LinearLayout.VERTICAL);
-      for (int i = 0; i < monitorContainer.getChildCount(); i += 1) {
+      for (int i = 0; i < monitorContainer.getChildCount(); i++) {
         View view = monitorContainer.getChildAt(i);
         view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 0, 1 /* weight */));
       }
@@ -657,7 +657,7 @@ public class FtcRobotControllerActivity extends Activity
     }
     // was some historical confusion about launch codes here, so we err safely
     if (request == RequestCode.CONFIGURE_ROBOT_CONTROLLER.ordinal() || request == RequestCode.SETTINGS_ROBOT_CONTROLLER.ordinal()) {
-      // We always do a refresh, whether it was a cancel or an OK, for robustness.
+      // We always do a refresh, whether it was a cancel or an OK, for robustness
       shutdownRobot();
       cfgFileMgr.getActiveConfigAndUpdateUI();
       updateUIAndRequestRobotSetup();
@@ -699,7 +699,7 @@ public class FtcRobotControllerActivity extends Activity
     if (controllerService != null) {
       callback.networkConnectionUpdate(controllerService.getNetworkConnectionStatus());
       callback.updateRobotStatus(controllerService.getRobotStatus());
-      // Only show this first-time toast on headless systems: what we have now on non-headless suffices.
+      // Only show this first-time toast on headless systems: what we have now on non-headless suffices
       requestRobotSetup(LynxConstants.isRevControlHub()
         ? new Runnable() {
             @Override public void run() {
@@ -767,7 +767,7 @@ public class FtcRobotControllerActivity extends Activity
   }
 
   private void checkPreferredChannel() {
-    // For P2P network, check to see what preferred channel is
+    // For P2P network, check to see what preferred channel is.
     if (networkType ==  NetworkType.WIFIDIRECT) {
       int prefChannel = preferencesHelper.readInt(getString(com.qualcomm.ftccommon.R.string.pref_wifip2p_channel), -1);
       if (prefChannel == -1) {

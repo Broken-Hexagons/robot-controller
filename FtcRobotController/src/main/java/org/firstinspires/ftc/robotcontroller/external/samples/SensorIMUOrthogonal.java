@@ -70,16 +70,16 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
  *    usbFacingDirection
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
+ * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
  *
  * Finally, choose the two correct parameters to define how your Hub is mounted and edit this OpMode
  * to use those parameters.
  */
 @TeleOp(name = "Sensor: IMU Orthogonal", group = "Sensor")
-@Disabled   // Comment this out to add to the OpMode list.
+@Disabled   // Comment this out to add to the OpMode list
 public class SensorIMUOrthogonal extends LinearOpMode
 {
-    // The IMU sensor object.
+    // The IMU sensor object
     IMU imu;
 
     //----------------------------------------------------------------------------------------------
@@ -104,9 +104,9 @@ public class SensorIMUOrthogonal extends LinearOpMode
          */
 
         /* The next two lines define Hub orientation.
-         * The Default Orientation (shown) is when a hub is mounted horizontally with the printed logo pointing UP and the USB port pointing FORWARD
+         * The Default Orientation (shown) is when a hub is mounted horizontally with the printed logo pointing UP and the USB port pointing FORWARD.
          *
-         * To Do:  EDIT these two lines to match YOUR mounting configuration
+         * To Do:  EDIT these two lines to match YOUR mounting configuration.
          */
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.UP;
         RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
@@ -117,7 +117,7 @@ public class SensorIMUOrthogonal extends LinearOpMode
         // Note: if you choose two conflicting directions, this initialization will cause a code exception.
         imu.initialize(new IMU.Parameters(orientationOnRobot));
 
-        // Loop and update the dashboard.
+        // Loop and update the dashboard
         while (!isStopRequested()) {
 
             telemetry.addData("Hub orientation", "Logo=%s   USB=%s\n ", logoDirection, usbDirection);

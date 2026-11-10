@@ -58,7 +58,7 @@ public class SensorMRGyro extends LinearOpMode {
    * depending on what you're trying to do. {@link IntegratingGyroscope} (and it's base interface,
    * {@link Gyroscope}) are common interfaces supported by possibly several different gyro
    * implementations. {@link ModernRoboticsI2cGyro}, by contrast, provides functionality that
-   * is unique to the Modern Robotics gyro sensor
+   * is unique to the Modern Robotics gyro sensor.
    */
   IntegratingGyroscope gyro;
   ModernRoboticsI2cGyro modernRoboticsI2cGyro;
@@ -73,15 +73,15 @@ public class SensorMRGyro extends LinearOpMode {
     boolean curResetState  = false;
 
     // Get a reference to a Modern Robotics gyro object. We use several interfaces
-    // on this object to illustrate which interfaces support which functionality
+    // on this object to illustrate which interfaces support which functionality.
     modernRoboticsI2cGyro = hardwareMap.get(ModernRoboticsI2cGyro.class, "gyro");
     gyro = (IntegratingGyroscope)modernRoboticsI2cGyro;
     // If you're only interested int the IntegratingGyroscope interface, the following will suffice.
     // gyro = hardwareMap.get(IntegratingGyroscope.class, "gyro");
-    // A similar approach will work for the Gyroscope interface, if that's all you need
+    // A similar approach will work for the Gyroscope interface, if that's all you need.
 
     // Start calibrating the gyro. This takes a few seconds and is worth performing
-    // during the initialization phase at the start of each OpMode
+    // during the initialization phase at the start of each OpMode.
     telemetry.log().add("Gyro Calibrating. Do Not Move!");
     modernRoboticsI2cGyro.calibrate();
 
@@ -96,7 +96,7 @@ public class SensorMRGyro extends LinearOpMode {
     telemetry.log().clear(); telemetry.log().add("Gyro Calibrated. Press Start.");
     telemetry.clear(); telemetry.update();
 
-    // Wait for the start button to be pressed.
+    // Wait for the start button to be pressed
     waitForStart();
     telemetry.log().clear();
     telemetry.log().add("Press A & B to reset heading");
@@ -120,7 +120,7 @@ public class SensorMRGyro extends LinearOpMode {
       int integratedZ = modernRoboticsI2cGyro.getIntegratedZValue();
 
       // Read dimensionalized data from the gyro. This gyro can report angular velocities
-      // about all three axes.  Additionally, it internally integrates the Z axis to
+      // about all three axes. Additionally, it internally integrates the Z axis to
       // be able to report an absolute angular Z orientation.
       AngularVelocity rates = gyro.getAngularVelocity(AngleUnit.DEGREES);
       float zAngle = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;

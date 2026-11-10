@@ -62,7 +62,7 @@ import java.util.List;
  *
  * Wiring:
  *  The OctoQuad will be configured to accept Quadrature encoders on the first four channels and
- *  Absolute (pulse width) encoders on the last four channels
+ *  Absolute (pulse width) encoders on the last four channels.
  *
  *  The standard encoder cable will connect each Driver Motor encoder to the OctoQuad. (channels 0-3)
  *
@@ -72,7 +72,7 @@ import java.util.List;
  *  To connect the Absolute position signal from a REV Thru-Bore encoder to the OctoQuad, the
  *  Provided 6-pin to 4-pin cable will need to be modified.
  *  At the 6-pin connector end, move the yellow wire from its initial pin-3 position to the
- *  ABS pin-5 position.  This can be done easily by using a small flathead screwdriver to lift the
+ *  ABS pin-5 position. This can be done easily by using a small flathead screwdriver to lift the
  *  small white tab holding the metal wire crimp in place and gently pulling the wire out.
  *  See the OctoSwerveDrive() constructor below for the correct wheel/channel assignment.
  *
@@ -90,7 +90,7 @@ public class SensorOctoQuadAdv extends LinearOpMode {
         // Connect to the OctoQuad by looking up its name in the hardwareMap.
         OctoQuad octoquad = hardwareMap.get(OctoQuad.class, "octoquad");
 
-        // Create the interface for the Swerve Drive Encoders.
+        // Create the interface for the Swerve Drive Encoders
         OctoSwerveDrive octoSwerveDrive = new OctoSwerveDrive(octoquad);
 
         // Display the OctoQuad firmware revision
@@ -100,7 +100,7 @@ public class SensorOctoQuadAdv extends LinearOpMode {
 
         waitForStart();
 
-        // Configure the telemetry for optimal display of data
+        // Configure the telemetry for optimal display of data.
         telemetry.setDisplayFormat(Telemetry.DisplayFormat.MONOSPACE);
         telemetry.setMsTransmissionInterval(50);
 
@@ -158,24 +158,24 @@ class OctoSwerveDrive {
         // Clear out all prior settings and encoder data before setting up desired configuration
         octoquad.resetEverything();
 
-        // Assume first 4 channels are relative encoders and the next 4 are absolute encoders.
+        // Assume first 4 channels are relative encoders and the next 4 are absolute encoders
         octoquad.setChannelBankConfig(OctoQuad.ChannelBankConfig.BANK1_QUADRATURE_BANK2_PULSE_WIDTH);
 
-        // Create the four OctoSwerveModules, and add them to a 'list' for easier reference
+        // Create the four OctoSwerveModules, and add them to a 'list' for easier reference.
 
         // Notes:
         //  The wheel/channel order is set here.  Ensure your encoder cables match.
         //
         //  The angleOffset must be set for each module so a forward facing wheel shows a steer
-        //  angle of 0 degrees. The process for determining the correct angleOffsets is as follows:
+        //  angle of 0 degrees.  The process for determining the correct angleOffsets is as follows:
         //  1) Set all the angleValues (below) to zero then build and deploy the code.
         //  2) Rotate all the swerve drives so the wheels are forward in the desired 0 degree position
         //  3) Run the OpMode, view the telemetry and record the "Degrees" value for each module.
         //  4) Update the code by entering the recorded Degrees value for each module as the
-        //     angleOffset (last) parameter in the lines below
+        //     angleOffset (last) parameter in the lines below.
         //
         // Rebuild and deploy the new code.  Verify that the telemetry now indicates 0 degrees when
-        //  the wheels are facing forward. Also verify that the correct module values change
+        //  the wheels are facing forward.  Also verify that the correct module values change
         //  appropriately when you manually spin (drive) and rotate (steer) a wheel.
 
         allModules.add(LeftFront  = new OctoSwerveModule(octoquad, "LF ",0,0));// Drive=0, Steer=4
@@ -188,10 +188,10 @@ class OctoSwerveDrive {
     }
 
     /**
-     * Updates all 4 swerve modules.
+     * Updates all 4 swerve modules
      */
     public void updateModules() {
-        // Read full OctoQuad data block and then pass it to each swerve module to update themselves
+        // Read full OctoQuad data block and then pass it to each swerve module to update themselves.
         octoquad.readAllEncoderData(encoderDataBlock);
         for (OctoSwerveModule module : allModules) {
             module.updateModule(encoderDataBlock);
@@ -212,7 +212,7 @@ class OctoSwerveDrive {
 }
 
 /***
- * The OctoSwerveModule class manages a single swerve module.
+ * The OctoSwerveModule class manages a single swerve module
  */
 class OctoSwerveModule {
 
@@ -246,7 +246,7 @@ class OctoSwerveModule {
         this.channel = quadChannel;
         this.angleOffset = angleOffset;
 
-        // Set both encoder directions
+        // Set both encoder directions.
         octoquad.setSingleEncoderDirection(channel,
              INVERT_DRIVE_ENCODER ? OctoQuad.EncoderDirection.REVERSE : OctoQuad.EncoderDirection.FORWARD);
         octoquad.setSingleEncoderDirection(channel + 4,
@@ -269,10 +269,10 @@ class OctoSwerveModule {
         driveCounts = encoderDataBlock.positions[channel];
         driveCountsPerSec = encoderDataBlock.velocities[channel] * VELOCITY_SAMPLES_PER_S;
 
-        // convert uS to degrees. Add in any possible direction flip
+        // convert uS to degrees.  Add in any possible direction flip.
         steerDegrees = AngleUnit.normalizeDegrees(
                         (encoderDataBlock.positions[channel+ 4] * DEGREES_PER_US) - angleOffset);
-        // convert uS/interval to deg per sec. Add in any possible direction flip.
+        // convert uS/interval to deg per sec.  Add in any possible direction flip.
         steerDegreesPerSec = encoderDataBlock.velocities[channel + 4] *
                         DEGREES_PER_US * VELOCITY_SAMPLES_PER_S;
     }

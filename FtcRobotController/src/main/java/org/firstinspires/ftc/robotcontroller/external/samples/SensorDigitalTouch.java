@@ -65,7 +65,7 @@ public class SensorDigitalTouch extends LinearOpMode {
         while (opModeIsActive()) {
 
             // button is pressed if value returned is LOW or false.
-            // send the info back to driver station using telemetry function
+            // send the info back to driver station using telemetry function.
             if (digitalTouch.getState() == false) {
                 telemetry.addData("Button", "PRESSED");
             } else {

@@ -65,13 +65,13 @@ public class RobotHardware {
     private Servo   leftHand = null;
     private Servo   rightHand = null;
 
-    // Define Drive constants.  Make them public so they CAN be used by the calling OpMode.
+    // Define Drive constants.  Make them public so they CAN be used by the calling OpMode
     public static final double MID_SERVO       =  0.5 ;
-    public static final double HAND_SPEED      =  0.02 ;  // sets rate to move servo.
+    public static final double HAND_SPEED      =  0.02 ;  // sets rate to move servo
     public static final double ARM_UP_POWER    =  0.45 ;
     public static final double ARM_DOWN_POWER  = -0.45 ;
 
-    // Define a constructor that allows the OpMode to pass a reference to itself
+    // Define a constructor that allows the OpMode to pass a reference to itself.
     public RobotHardware (LinearOpMode opmode) {
         myOpMode = opmode;
     }
@@ -89,8 +89,8 @@ public class RobotHardware {
         armMotor   = myOpMode.hardwareMap.get(DcMotor.class, "arm");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
-        // Pushing the left stick forward MUST make robot go forward.  So adjust these two lines based on your first test drive.
-        // Note: The settings here assume direct drive on left and right wheels. Gear Reduction or 90 Deg drives may require direction flips
+        // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
+        // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
         rightDrive.setDirection(DcMotor.Direction.FORWARD);
 
@@ -111,7 +111,7 @@ public class RobotHardware {
     /**
      * Calculates the left/right motor powers required to achieve the requested
      * robot motions: Drive (Axial motion) and Turn (Yaw motion).
-     * Then sends these power levels to the motors
+     * Then sends these power levels to the motors.
      *
      * @param Drive     Fwd/Rev driving power (-1.0 to 1.0) +ve is forward
      * @param Turn      Right/Left turning power (-1.0 to 1.0) +ve is CW
@@ -134,13 +134,13 @@ public class RobotHardware {
     }
 
     /**
-     * Pass the requested wheel motor powers to the appropriate hardware drive motors
+     * Pass the requested wheel motor powers to the appropriate hardware drive motors.
      *
      * @param leftWheel     Fwd/Rev driving power (-1.0 to 1.0) +ve is forward
      * @param rightWheel    Fwd/Rev driving power (-1.0 to 1.0) +ve is forward
      */
     public void setDrivePower(double leftWheel, double rightWheel) {
-        // Output the values to the motor drives
+        // Output the values to the motor drives.
         leftDrive.setPower(leftWheel);
         rightDrive.setPower(rightWheel);
     }
@@ -155,7 +155,7 @@ public class RobotHardware {
     }
 
     /**
-     * Send the two hand-servos to opposing (mirrored) positions, based on the passed offset
+     * Send the two hand-servos to opposing (mirrored) positions, based on the passed offset.
      *
      * @param offset
      */
