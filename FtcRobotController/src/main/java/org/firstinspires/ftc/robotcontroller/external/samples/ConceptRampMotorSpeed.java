@@ -65,10 +65,10 @@ public class ConceptRampMotorSpeed extends LinearOpMode {
     public void runOpMode() {
 
         // Connect to motor (Assume standard left wheel)
-        // Change the text in quotes to match any motor name on your robot.
+        // Change the text in quotes to match any motor name on your robot
         motor = hardwareMap.get(DcMotor.class, "left_drive");
 
-        // Wait for the start button
+        // Wait for the start button.
         telemetry.addData(">", "Press Start to run Motors." );
         telemetry.update();
         waitForStart();
@@ -76,13 +76,13 @@ public class ConceptRampMotorSpeed extends LinearOpMode {
         // Ramp motor speeds till stop pressed.
         while(opModeIsActive()) {
 
-            // Ramp the motors, according to the rampUp variable.
+            // Ramp the motors, according to the rampUp variable
             if (rampUp) {
                 // Keep stepping up until we hit the max value.
                 power += INCREMENT ;
                 if (power >= MAX_FWD ) {
                     power = MAX_FWD;
-                    rampUp = !rampUp;   // Switch ramp direction
+                    rampUp = !rampUp;   // Switch ramp direction.
                 }
             }
             else {
@@ -90,7 +90,7 @@ public class ConceptRampMotorSpeed extends LinearOpMode {
                 power -= INCREMENT ;
                 if (power <= MAX_REV ) {
                     power = MAX_REV;
-                    rampUp = !rampUp;  // Switch ramp direction
+                    rampUp = !rampUp;  // Switch ramp direction.
                 }
             }
 

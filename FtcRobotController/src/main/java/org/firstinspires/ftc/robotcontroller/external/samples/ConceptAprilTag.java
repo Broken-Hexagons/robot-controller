@@ -63,16 +63,16 @@ import java.util.List;
  * These default parameters are shown as comments in the code below.
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
+ * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 @TeleOp(name = "Concept: AprilTag", group = "Concept")
 @Disabled
 public class ConceptAprilTag extends LinearOpMode {
 
-    private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
+    private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera.
 
     /**
-     * The variable to store our instance of the AprilTag processor.
+     * The variable to store our instance of the AprilTag processor
      */
     private AprilTagProcessor aprilTag;
 
@@ -86,7 +86,7 @@ public class ConceptAprilTag extends LinearOpMode {
 
         initAprilTag();
 
-        // Wait for the DS start button to be touched.
+        // Wait for the DS start button to be touched
         telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
         telemetry.addData(">", "Touch START to start OpMode");
         telemetry.update();
@@ -112,13 +112,13 @@ public class ConceptAprilTag extends LinearOpMode {
             }
         }
 
-        // Save more CPU resources when camera is no longer needed.
+        // Save more CPU resources when camera is no longer needed
         visionPortal.close();
 
     }   // end method runOpMode()
 
     /**
-     * Initialize the AprilTag processor.
+     * Initialize the AprilTag processor
      */
     private void initAprilTag() {
 
@@ -150,7 +150,7 @@ public class ConceptAprilTag extends LinearOpMode {
         // Note: Decimation can be changed on-the-fly to adapt during a match.
         //aprilTag.setDecimation(3);
 
-        // Create the vision portal by using a builder.
+        // Create the vision portal by using a builder
         VisionPortal.Builder builder = new VisionPortal.Builder();
 
         // Set the camera (webcam vs. built-in RC phone camera).
@@ -160,10 +160,10 @@ public class ConceptAprilTag extends LinearOpMode {
             builder.setCamera(BuiltinCameraDirection.BACK);
         }
 
-        // Choose a camera resolution. Not all cameras support all resolutions.
+        // Choose a camera resolution.  Not all cameras support all resolutions.
         //builder.setCameraResolution(new Size(640, 480));
 
-        // Enable the RC preview (LiveView).  Set "false" to omit camera monitoring.
+        // Enable the RC preview (LiveView). Set "false" to omit camera monitoring.
         //builder.enableLiveView(true);
 
         // Set the stream format; MJPEG uses less bandwidth than default YUY2.
@@ -174,7 +174,7 @@ public class ConceptAprilTag extends LinearOpMode {
         // If set "false", monitor shows camera view without annotations.
         //builder.setAutoStopLiveView(false);
 
-        // Set and enable the processor.
+        // Set and enable the processor
         builder.addProcessor(aprilTag);
 
         // Build the Vision Portal, using the above settings.
@@ -187,14 +187,14 @@ public class ConceptAprilTag extends LinearOpMode {
 
 
     /**
-     * Add telemetry about AprilTag detections.
+     * Add telemetry about AprilTag detections
      */
     private void telemetryAprilTag() {
 
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
         telemetry.addData("# AprilTags Detected", currentDetections.size());
 
-        // Step through the list of detections and display info for each one.
+        // Step through the list of detections and display info for each one
         for (AprilTagDetection detection : currentDetections) {
             if (detection.metadata != null) {
                 telemetry.addLine(String.format("\n==== (ID %d) %s", detection.id, detection.metadata.name));
@@ -207,7 +207,7 @@ public class ConceptAprilTag extends LinearOpMode {
             }
         }   // end for() loop
 
-        // Add "key" information to telemetry
+        // Add "key" information to telemetry.
         telemetry.addLine("\nkey:\nXYZ = X (Right), Y (Forward), Z (Up) dist.");
         telemetry.addLine("PRY = Pitch, Roll & Yaw (XYZ Rotation)");
         telemetry.addLine("RBE = Range, Bearing & Elevation");

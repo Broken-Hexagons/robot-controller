@@ -101,7 +101,7 @@ public class SampleRevBlinkinLedDriver extends OpMode {
             doAutoDisplay();
         } else {
             /*
-             * MANUAL mode: Nothing to do, setting the pattern as a result of a gamepad event.
+             * MANUAL mode: Nothing to do, setting the pattern as a result of a gamepad event
              */
         }
     }
@@ -112,7 +112,7 @@ public class SampleRevBlinkinLedDriver extends OpMode {
      * Responds to a gamepad button press.  Demonstrates rate limiting for
      * button presses.  If loop() is called every 10ms and and you don't rate
      * limit, then any given button press may register as multiple button presses,
-     * which in this application is problematic.
+     * which in this application is problematic
      *
      * A: Manual mode, Right bumper displays the next pattern, left bumper displays the previous pattern.
      * B: Auto mode, pattern cycles, changing every LED_PERIOD seconds.

@@ -61,7 +61,7 @@ public class BioBuzzTwoDriverMode extends BaseTeleOpMode {
                 shooter.decreaseFlywheelSpeed();
             }
         }else{
-            //Control Shooter speed using presets
+            //Control Shooter speed using presets.
             if (gamepad2.dpadUpWasPressed()) {
                 shooter.nextFlywheelMode();
             }

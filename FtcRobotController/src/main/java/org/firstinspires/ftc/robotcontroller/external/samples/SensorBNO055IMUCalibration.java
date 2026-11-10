@@ -60,7 +60,7 @@ import java.util.Locale;
  * http://iotdk.intel.com/docs/master/upm/classupm_1_1_b_n_o055.html
  *
  * "This device requires calibration in order to operate accurately. [...] Calibration data is
- * lost on a power cycle. See one of the examples for a description of how to calibrate the device,
+ * lost on a power cycle.  See one of the examples for a description of how to calibrate the device,
  * but in essence:
  *
  * There is a calibration status register available [...] that returns the calibration status
@@ -81,14 +81,14 @@ import java.util.Locale;
  *
  * To calibrate the IMU, run this sample OpMode with a gamepad attached to the driver station.
  * Once the IMU has reached sufficient calibration as reported on telemetry, press the 'A'
- * button on the gamepad to write the calibration to a file. That file can then be indicated
- * later when running an OpMode which uses the IMU.
+ * button on the gamepad to write the calibration to a file.  That file can then be indicated
+ * later when running an OpMode which uses the IMU
  *
  * Note: if your intended uses of the IMU do not include use of all its sensors (for example,
  * you might not use the magnetometer), then it makes little sense for you to wait for full
  * calibration of the sensors you are not using before saving the calibration data. Indeed,
  * it appears that in a SensorMode that doesn't use the magnetometer (for example), the
- * magnetometer cannot actually be calibrated.
+ * magnetometer cannot actually be calibrated
  *
  * References:
  * The AdafruitBNO055IMU Javadoc
@@ -104,7 +104,7 @@ public class SensorBNO055IMUCalibration extends LinearOpMode
     // State
     //----------------------------------------------------------------------------------------------
 
-    // Our sensors, motors, and other devices go here, along with other long term state
+    // Our sensors, motors, and other devices go here, along with other long term state.
     BNO055IMU imu;
 
     // State used for updating telemetry
@@ -149,14 +149,14 @@ public class SensorBNO055IMUCalibration extends LinearOpMode
 
             if (gamepad1.a) {
 
-                // Get the calibration data
+                // Get the calibration data.
                 BNO055IMU.CalibrationData calibrationData = imu.readCalibrationData();
 
-                // Save the calibration data to a file. You can choose whatever file
+                // Save the calibration data to a file.  You can choose whatever file
                 // name you wish here, but you'll want to indicate the same file name
-                // when you initialize the IMU in an OpMode in which it is used. If you
+                // when you initialize the IMU in an OpMode in which it is used.  If you
                 // have more than one IMU on your robot, you'll of course want to use
-                // different configuration file names for each.
+                // different configuration file names for each
                 String filename = "AdafruitIMUCalibration.json";
                 File file = AppUtil.getInstance().getSettingsFile(filename);
                 ReadWriteFile.writeFile(file, calibrationData.serialize());
@@ -176,12 +176,12 @@ public class SensorBNO055IMUCalibration extends LinearOpMode
     void composeTelemetry() {
 
         // At the beginning of each telemetry update, grab a bunch of data
-        // from the IMU that we will then display in separate lines.
+        // from the IMU that we will then display in separate lines
         telemetry.addAction(new Runnable() { @Override public void run()
                 {
                 // Acquiring the angles is relatively expensive; we don't want
                 // to do that in each of the three items that need that info, as that's
-                // three times the necessary expense.
+                // three times the necessary expense
                 angles   = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
                 }
             });

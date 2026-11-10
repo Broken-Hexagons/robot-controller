@@ -118,7 +118,7 @@ public class Shooter {
     public void nextFlywheelMode(){
         switch (currentMode){
             case FLEX:
-                // Switch from FLEX to a preset mode
+                // Switch from FLEX to a preset mode.
                 if(currentSpeed <= SpeedMode.DUNK.speed){
                     currentMode = SpeedMode.DUNK;
                 }else if(currentSpeed <= SpeedMode.FREETHROW.speed){
@@ -146,7 +146,7 @@ public class Shooter {
     public void previousFlywheelMode(){
         switch (currentMode){
             case FLEX:
-                // Switch from FLEX to a preset mode
+                // Switch from FLEX to a preset mode.
                 if(currentSpeed > SpeedMode.THREEPOINTER.speed){
                     currentMode = SpeedMode.THREEPOINTER;
                 }else if(currentSpeed > SpeedMode.FREETHROW.speed){
@@ -190,7 +190,7 @@ public class Shooter {
     }
 
     /**
-     * Closes the gatekeeper to store or block artifacts.
+     * Closes the gatekeeper to store or block artifacts
      */
     public void closeGatekeeper(){
         gateKeeper.setPower(0.0);

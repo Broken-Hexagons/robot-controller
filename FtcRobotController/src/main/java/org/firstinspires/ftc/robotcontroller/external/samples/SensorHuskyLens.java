@@ -74,7 +74,7 @@ public class SensorHuskyLens extends LinearOpMode {
 
         /*
          * This sample rate limits the reads solely to allow a user time to observe
-         * what is happening on the Driver Station telemetry.  Typical applications
+         * what is happening on the Driver Station telemetry. Typical applications
          * would not likely rate limit.
          */
         Deadline rateLimit = new Deadline(READ_PERIOD, TimeUnit.SECONDS);
@@ -119,7 +119,7 @@ public class SensorHuskyLens extends LinearOpMode {
         waitForStart();
 
         /*
-         * Looking for AprilTags per the call to selectAlgorithm() above.  A handy grid
+         * Looking for AprilTags per the call to selectAlgorithm() above. A handy grid
          * for testing may be found at https://wiki.dfrobot.com/HUSKYLENS_V1.0_SKU_SEN0305_SEN0336#target_20.
          *
          * Note again that the device only recognizes the 36h11 family of tags out of the box.
@@ -133,9 +133,9 @@ public class SensorHuskyLens extends LinearOpMode {
             /*
              * All algorithms, except for LINE_TRACKING, return a list of Blocks where a
              * Block represents the outline of a recognized object along with its ID number.
-             * ID numbers allow you to identify what the device saw.  See the HuskyLens documentation
+             * ID numbers allow you to identify what the device saw. See the HuskyLens documentation
              * referenced in the header comment above for more information on IDs and how to
-             * assign them to objects.
+             * assign them to objects
              *
              * Returns an empty array if no objects are seen.
              */

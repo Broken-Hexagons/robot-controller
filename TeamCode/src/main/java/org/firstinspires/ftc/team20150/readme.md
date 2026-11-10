@@ -3,7 +3,7 @@
 Welcome!
 
 This module, TeamCode, is the place where you will write/paste the code for your team's
-robot controller App. This module is currently empty (a clean slate) but the
+robot controller App.  This module is currently empty (a clean slate) but the
 process for adding OpModes is straightforward.
 
 ## Creating your own OpModes
@@ -51,7 +51,7 @@ After the prefix, other conventions will apply:
 * Concept class names are constructed as:   Concept - Topic - OpModetype
 
 Once you are familiar with the range of samples available, you can choose one to be the
-basis for your own robot.  In all cases, the desired sample(s) needs to be copied into
+basis for your own robot. In all cases, the desired sample(s) needs to be copied into
 your TeamCode module to be used.
 
 This is done inside Android Studio directly, using the following steps:

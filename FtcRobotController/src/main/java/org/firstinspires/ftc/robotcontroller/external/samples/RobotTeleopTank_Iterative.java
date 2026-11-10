@@ -63,23 +63,23 @@ public class RobotTeleopTank_Iterative extends OpMode{
     double clawOffset = 0;
 
     public static final double MID_SERVO   =  0.5 ;
-    public static final double CLAW_SPEED  = 0.02 ;        // sets rate to move servo
-    public static final double ARM_UP_POWER    =  0.50 ;   // Run arm motor up at 50% power
-    public static final double ARM_DOWN_POWER  = -0.25 ;   // Run arm motor down at -25% power
+    public static final double CLAW_SPEED  = 0.02 ;        // sets rate to move servo.
+    public static final double ARM_UP_POWER    =  0.50 ;   // Run arm motor up at 50% power.
+    public static final double ARM_DOWN_POWER  = -0.25 ;   // Run arm motor down at -25% power.
 
     /*
      * Code to run ONCE when the driver hits INIT
      */
     @Override
     public void init() {
-        // Define and Initialize Motors
+        // Define and Initialize Motors.
         leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
         rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
         leftArm    = hardwareMap.get(DcMotor.class, "left_arm");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
-        // Pushing the left and right sticks forward MUST make robot go forward. So adjust these two lines based on your first test drive.
-        // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
+        // Pushing the left and right sticks forward MUST make robot go forward.  So adjust these two lines based on your first test drive.
+        // Note: The settings here assume direct drive on left and right wheels. Gear Reduction or 90 Deg drives may require direction flips
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
         rightDrive.setDirection(DcMotor.Direction.FORWARD);
 
@@ -105,7 +105,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
     }
 
     /*
-     * Code to run ONCE when the driver hits START
+     * Code to run ONCE when the driver hits START.
      */
     @Override
     public void start() {
@@ -132,7 +132,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         else if (gamepad1.left_bumper)
             clawOffset -= CLAW_SPEED;
 
-        // Move both servos to new position.  Assume servos are mirror image of each other.
+        // Move both servos to new position. Assume servos are mirror image of each other
         clawOffset = Range.clip(clawOffset, -0.5, 0.5);
         leftClaw.setPosition(MID_SERVO + clawOffset);
         rightClaw.setPosition(MID_SERVO - clawOffset);
@@ -152,7 +152,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
     }
 
     /*
-     * Code to run ONCE after the driver hits STOP
+     * Code to run ONCE after the driver hits STOP.
      */
     @Override
     public void stop() {

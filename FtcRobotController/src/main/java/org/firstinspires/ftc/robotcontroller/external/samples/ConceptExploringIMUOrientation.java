@@ -66,7 +66,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
  *
  * The Yaw can be reset (to zero) by pressing the Y button on the gamepad (Triangle on a PS4 controller)
  *
- * The rotational velocities should follow the change in corresponding axes.
+ * The rotational velocities should follow the change in corresponding axes
  */
 
 @TeleOp(name="Concept: IMU Orientation", group="Concept")
@@ -94,7 +94,7 @@ public class ConceptExploringIMUOrientation extends LinearOpMode {
         boolean justChangedLogoDirection = false;
         boolean justChangedUsbDirection = false;
 
-        // Loop until stop requested
+        // Loop until stop requested.
         while (!isStopRequested()) {
 
             // Check to see if Yaw reset is requested (Y button)

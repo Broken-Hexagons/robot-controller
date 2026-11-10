@@ -65,7 +65,7 @@ public class SensorTouch extends LinearOpMode {
         // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
         while (opModeIsActive()) {
 
-            // send the info back to driver station using telemetry function.
+            // send the info back to driver station using telemetry function
             if (touchSensor.isPressed()) {
                 telemetry.addData("Touch Sensor", "Is Pressed");
             } else {

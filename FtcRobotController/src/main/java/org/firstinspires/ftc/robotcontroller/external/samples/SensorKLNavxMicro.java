@@ -58,7 +58,7 @@ public class SensorKLNavxMicro extends LinearOpMode {
      * depending on what you're trying to do. {@link IntegratingGyroscope} (and it's base interface,
      * {@link Gyroscope}) are common interfaces supported by possibly several different gyro
      * implementations. {@link NavxMicroNavigationSensor}, by contrast, provides functionality that
-     * is unique to the navX Micro sensor.
+     * is unique to the navX Micro sensor
      */
     IntegratingGyroscope gyro;
     NavxMicroNavigationSensor navxMicro;
@@ -68,13 +68,13 @@ public class SensorKLNavxMicro extends LinearOpMode {
 
     @Override public void runOpMode() throws InterruptedException {
         // Get a reference to a Modern Robotics GyroSensor object. We use several interfaces
-        // on this object to illustrate which interfaces support which functionality.
+        // on this object to illustrate which interfaces support which functionality
         navxMicro = hardwareMap.get(NavxMicroNavigationSensor.class, "navx");
         gyro = (IntegratingGyroscope)navxMicro;
         // If you're only interested int the IntegratingGyroscope interface, the following will suffice.
         // gyro = hardwareMap.get(IntegratingGyroscope.class, "navx");
 
-        // The gyro automatically starts calibrating. This takes a few seconds.
+        // The gyro automatically starts calibrating. This takes a few seconds
         telemetry.log().add("Gyro Calibrating. Do Not Move!");
 
         // Wait until the gyro calibration is complete
@@ -87,14 +87,14 @@ public class SensorKLNavxMicro extends LinearOpMode {
         telemetry.log().clear(); telemetry.log().add("Gyro Calibrated. Press Start.");
         telemetry.clear(); telemetry.update();
 
-        // Wait for the start button to be pressed
+        // Wait for the start button to be pressed.
         waitForStart();
         telemetry.log().clear();
 
         while (opModeIsActive()) {
 
             // Read dimensionalized data from the gyro. This gyro can report angular velocities
-            // about all three axes. Additionally, it internally integrates the Z axis to
+            // about all three axes.  Additionally, it internally integrates the Z axis to
             // be able to report an absolute angular Z orientation.
             AngularVelocity rates = gyro.getAngularVelocity(AngleUnit.DEGREES);
             Orientation angles = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);

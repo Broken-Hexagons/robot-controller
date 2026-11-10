@@ -69,12 +69,12 @@ import java.util.List;
  * avoid reading the same encoder input multiple times around a control loop.
  * Under normal conditions, this will slow down the control loop.
  * The preferred method is to read all the required inputs ONCE at the beginning of the loop,
- * and save the values in variable that can be used by other parts of the control code.
+ * and save the values in variable that can be used by other parts of the control code
  *
  * eg: if you are sending encoder positions to your telemetry display, putting a getCurrentPosition()
  * call in the telemetry statement will force the code to go and get another copy which will take time.
  * It's much better read the position into a variable once, and use that variable for control AND display.
- * Reading saved variables takes no time at all.
+ * Reading saved variables takes no time at all
  *
  * Once you put all your sensor reads at the beginning of the control cycle, it's very easy to use
  * the bulk-read AUTO mode to streamline your cycle timing.
@@ -101,7 +101,7 @@ public class ConceptMotorBulkRead extends LinearOpMode {
 
         // Important Step 1:  Make sure you use DcMotorEx when you instantiate your motors.
         m1 = hardwareMap.get(DcMotorEx.class, "m1");  // Configure the robot to use these 4 motor names,
-        m2 = hardwareMap.get(DcMotorEx.class, "m2");  // or change these strings to match your existing Robot Configuration.
+        m2 = hardwareMap.get(DcMotorEx.class, "m2");  // or change these strings to match your existing Robot Configuration
         m3 = hardwareMap.get(DcMotorEx.class, "m3");
         m4 = hardwareMap.get(DcMotorEx.class, "m4");
 
@@ -137,7 +137,7 @@ public class ConceptMotorBulkRead extends LinearOpMode {
             v3 = m3.getVelocity();
             v4 = m4.getVelocity();
 
-            // Put Control loop action code here.
+            // Put Control loop action code here
 
         }
         // calculate the average cycle time.
@@ -146,7 +146,7 @@ public class ConceptMotorBulkRead extends LinearOpMode {
 
         // --------------------------------------------------------------------------------------
         // Run test cycles using AUTO cache mode
-        // In this mode, only one bulk read is done per cycle, UNLESS you read a specific encoder/velocity item AGAIN in that cycle.
+        // In this mode, only one bulk read is done per cycle, UNLESS you read a specific encoder/velocity item AGAIN in that cycle
         // --------------------------------------------------------------------------------------
 
         // Important Step 3: Option A. Set all Expansion hubs to use the AUTO Bulk Caching mode
@@ -167,7 +167,7 @@ public class ConceptMotorBulkRead extends LinearOpMode {
             v3 = m3.getVelocity();
             v4 = m4.getVelocity();
 
-            // Put Control loop action code here.
+            // Put Control loop action code here
 
         }
         // calculate the average cycle time.
@@ -177,7 +177,7 @@ public class ConceptMotorBulkRead extends LinearOpMode {
         // --------------------------------------------------------------------------------------
         // Run test cycles using MANUAL cache mode
         // In this mode, only one block read is done each control cycle.
-        // This is the MOST efficient method, but it does require that the cache is cleared manually each control cycle.
+        // This is the MOST efficient method, but it does require that the cache is cleared manually each control cycle
         // --------------------------------------------------------------------------------------
 
         // Important Step 3: Option B. Set all Expansion hubs to use the MANUAL Bulk Caching mode
@@ -204,18 +204,18 @@ public class ConceptMotorBulkRead extends LinearOpMode {
             v3 = m3.getVelocity();
             v4 = m4.getVelocity();
 
-            // Put Control loop action code here.
+            // Put Control loop action code here
 
         }
         // calculate the average cycle time.
         t3 = timer.milliseconds() / cycles;
         displayCycleTimes("Complete");
 
-        // wait until op-mode is stopped by user, before clearing display.
+        // wait until op-mode is stopped by user, before clearing display
         while (opModeIsActive()) ;
     }
 
-    // Display three comparison times.
+    // Display three comparison times
     void displayCycleTimes(String status) {
         telemetry.addData("Testing", status);
         telemetry.addData("Cache = OFF",    "%5.1f mS/cycle", t1);

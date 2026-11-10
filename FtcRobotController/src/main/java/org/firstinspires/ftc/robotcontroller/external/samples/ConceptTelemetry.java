@@ -86,7 +86,7 @@ public class ConceptTelemetry extends LinearOpMode  {
          * to have some interesting data to show */
         ElapsedTime opmodeRunTime = new ElapsedTime();
 
-        // We show the log in oldest-to-newest order, as that's better for poetry
+        // We show the log in oldest-to-newest order, as that's better for poetry.
         telemetry.log().setDisplayOrder(Telemetry.Log.DisplayOrder.OLDEST_FIRST);
         // We can control the number of lines shown in the log
         telemetry.log().setCapacity(6);
@@ -94,8 +94,8 @@ public class ConceptTelemetry extends LinearOpMode  {
         double sPoemInterval = 0.6;
 
         /*
-         * Wait until we've been given the ok to go. For something to do, we emit the
-         * elapsed time as we sit here and wait. If we didn't want to do anything while
+         * Wait until we've been given the ok to go.  For something to do, we emit the
+         * elapsed time as we sit here and wait.  If we didn't want to do anything while
          * we waited, we would just call waitForStart().
          */
         while (!isStarted()) {
@@ -104,7 +104,7 @@ public class ConceptTelemetry extends LinearOpMode  {
             idle();
         }
 
-        // Ok, we've been given the ok to go
+        // Ok, we've been given the ok to go.
 
         /*
          * As an illustration, the first line on our telemetry display will display the battery voltage.
@@ -128,7 +128,7 @@ public class ConceptTelemetry extends LinearOpMode  {
         // Go go gadget robot!
         while (opModeIsActive()) {
 
-            // Emit poetry if it's been a while
+            // Emit poetry if it's been a while.
             if (poemElapsed.seconds() > sPoemInterval) {
                 emitPoemLine();
             }
@@ -137,7 +137,7 @@ public class ConceptTelemetry extends LinearOpMode  {
             telemetry.addData("loop count", loopCount);
             telemetry.addData("ms/loop", "%.3f ms", opmodeRunTime.milliseconds() / loopCount);
 
-            // Show joystick information as some other illustrative data
+            // Show joystick information as some other illustrative data.
             telemetry.addLine("left joystick | ")
                     .addData("x", gamepad1.left_stick_x)
                     .addData("y", gamepad1.left_stick_y);
@@ -151,8 +151,8 @@ public class ConceptTelemetry extends LinearOpMode  {
              */
             telemetry.update();
 
-            // Update loop info
-            loopCount++;
+            // Update loop info.
+            loopCount += 1;
         }
     }
 

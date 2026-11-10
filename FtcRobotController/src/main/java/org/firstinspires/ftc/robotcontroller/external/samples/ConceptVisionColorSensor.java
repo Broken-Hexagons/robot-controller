@@ -86,7 +86,7 @@ public class ConceptVisionColorSensor extends LinearOpMode
          *
          *     Note that in the example shown below, only some of the available colors are included.
          *     This will force any other colored region into one of these colors.
-         *     eg: Green may be reported as YELLOW, as this may be the "closest" match.
+         *     eg: Green may be reported as YELLOW, as this may be the "closest" match
          */
         PredominantColorProcessor colorSensor = new PredominantColorProcessor.Builder()
                 .setRoi(ImageRegion.asUnityCenterCoordinates(-0.1, 0.1, 0.1, -0.1))
@@ -101,7 +101,7 @@ public class ConceptVisionColorSensor extends LinearOpMode
                 .build();
 
         /*
-         * Build a vision portal to run the Color Sensor process.
+         * Build a vision portal to run the Color Sensor process
          *
          *  - Add the colorSensor process created above.
          *  - Set the desired video resolution.
@@ -118,7 +118,7 @@ public class ConceptVisionColorSensor extends LinearOpMode
                 .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
                 .build();
 
-        telemetry.setMsTransmissionInterval(100);  // Speed up telemetry updates, for debugging.
+        telemetry.setMsTransmissionInterval(100);  // Speed up telemetry updates, for debugging
         telemetry.setDisplayFormat(Telemetry.DisplayFormat.MONOSPACE);
 
         // WARNING:  To view the stream preview on the Driver Station, this code runs in INIT mode.
@@ -126,7 +126,7 @@ public class ConceptVisionColorSensor extends LinearOpMode
         {
             telemetry.addLine("Preview on/off: 3 dots, Camera Stream\n");
 
-            // Request the most recent color analysis.  This will return the closest matching
+            // Request the most recent color analysis. This will return the closest matching
             // colorSwatch and the predominant color in the RGB, HSV and YCrCb color spaces.
             // The color space values are returned as three-element int[] arrays as follows:
             //  RGB   Red 0-255, Green 0-255, Blue 0-255
@@ -142,7 +142,7 @@ public class ConceptVisionColorSensor extends LinearOpMode
 
             PredominantColorProcessor.Result result = colorSensor.getAnalysis();
 
-            // Display the Color Sensor result.
+            // Display the Color Sensor result
             telemetry.addData("Best Match", result.closestSwatch);
             telemetry.addLine(String.format("RGB   (%3d, %3d, %3d)",
                                             result.RGB[0], result.RGB[1], result.RGB[2]));
