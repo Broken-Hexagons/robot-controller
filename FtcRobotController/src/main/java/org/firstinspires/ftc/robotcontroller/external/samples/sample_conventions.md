@@ -106,7 +106,7 @@ is used on the device configuration name.
 ### OpMode code Comments
 
 Sample comments should read like normal code comments, that is, as an explanation of what the
-sample code is doing.  They should NOT be directives to the user,
+sample code is doing. They should NOT be directives to the user,
 like: “insert your joystick code here” as these comments typically aren’t
 detailed enough to be useful.  They also often get left in the code and become garbage.
 
