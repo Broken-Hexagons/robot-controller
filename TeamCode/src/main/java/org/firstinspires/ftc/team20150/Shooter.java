@@ -119,12 +119,14 @@ public class Shooter {
         switch (currentMode){
             case FLEX:
                 // Switch from FLEX to a preset mode.
-                if(currentSpeed <= SpeedMode.DUNK.speed){
+                if(currentSpeed < SpeedMode.DUNK.speed){
                     currentMode = SpeedMode.DUNK;
-                }else if(currentSpeed <= SpeedMode.FREETHROW.speed){
+                }else if(currentSpeed < SpeedMode.FREETHROW.speed){
                     currentMode = SpeedMode.FREETHROW;
-                }else{
+                }else if(currentSpeed < SpeedMode.THREEPOINTER.speed) {
                     currentMode = SpeedMode.THREEPOINTER;
+                }else{
+                    return
                 }
                 break;
             case DUNK:
