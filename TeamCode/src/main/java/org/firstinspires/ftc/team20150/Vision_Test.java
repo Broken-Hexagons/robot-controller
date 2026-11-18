@@ -25,6 +25,7 @@ import android.graphics.Color;
 import android.util.Size;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -75,6 +76,9 @@ import java.util.List;
 public class Vision_Test extends LinearOpMode {
     @Override
     public void runOpMode() {
+
+        // Adding a line to make telemetry go to the dashboard also, in addition to the drive station
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         /* Build a "Color Locator" vision processor based on the ColorBlobLocatorProcessor class.
          * - Specify the color range you are looking for. Use a predefined color, or create your own
          *
@@ -165,10 +169,12 @@ public class Vision_Test extends LinearOpMode {
                 .setCamera(BuiltinCameraDirection.BACK)
                 .build();
 
-        //FtcDashboard.getInstance().startCameraStream(portal, 30);
-
         telemetry.setMsTransmissionInterval(100);   // Speed up telemetry updates for debugging.
         telemetry.setDisplayFormat(Telemetry.DisplayFormat.MONOSPACE);
+
+        // Line to stream video to the dashboard, note that it only works with a webcam so comment
+        // this line out when testing with the phone internal camera.
+        // FtcDashboard.getInstance().startCameraStream(portal, 30);
 
         // WARNING:  To view the stream preview on the Driver Station, this code runs in INIT mode.
         while (opModeIsActive() || opModeInInit()) {
