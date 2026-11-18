@@ -37,8 +37,9 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.opencv.Circle;
 import org.firstinspires.ftc.vision.opencv.ColorBlobLocatorProcessor;
 import org.firstinspires.ftc.vision.opencv.ColorRange;
-import org.firstinspires.ftc.vision.opencv.ImageRegion;
-
+import org.firstinspires.ftc.vision.opencv.ImageRegion
+import org.firstinspires.ftc.vision.opencv.ColorRange;
+import org.opencv.core.Scalar;
 import java.util.List;
 
 /*
@@ -136,7 +137,10 @@ public class Vision_Test extends LinearOpMode {
          *        CLOSING:    Will Dilate and then Erode which will tend to fill in any small holes in blob edges.
          */
         ColorBlobLocatorProcessor colorLocator = new ColorBlobLocatorProcessor.Builder()
-                .setTargetColorRange(ColorRange.YELLOW)   // Use a predefined color match
+                .setTargetColorRange(new ColorRange(
+                        ColorSpace.HSV,
+                        new Scalar(20,100,100)
+                ))   // Use a predefined color match
                 .setContourMode(ColorBlobLocatorProcessor.ContourMode.EXTERNAL_ONLY)
                 .setRoi(ImageRegion.entireFrame())
                 .setDrawContours(true)   // Show contours on the Stream Preview
