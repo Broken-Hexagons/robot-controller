@@ -23,6 +23,9 @@ android {
     }
 }
 
+tasks.register("prepareKotlinBuildScriptModel") {}
+
+
 dependencies {
     implementation project(':FtcRobotController')
 }
