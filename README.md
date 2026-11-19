@@ -56,6 +56,32 @@ The `TeamCode` module contains custom autonomous and teleoperated OpModes, subsy
 
 ---
 
+## 🎮 Game Pad 1
+| Button | Function |
+| :--- | :--- | 
+| 🕹️ Right | Turn robot |
+| 🕹️ Left | Drive robot + strafe right, left |
+| ⏹️ | Emergency stop |
+
+
+
+
+## 🎮 Game Pad 2
+| Button | Function |
+| :--- | :--- | 
+| ✖️ | Hold to Shoot |
+| 🔼 | Hold to Reverse intake |
+| ⬆️⬇️ | Change preset speed |
+| ⬆️⬇️ + Right bumper | Change speed by 0.01 |
+| ⏹️ | Emergency stop |
+| ⏺️ | Not used |
+
+
+
+
+
+
+
 ## 📂 Package Structure
 
 ```
