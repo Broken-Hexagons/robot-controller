@@ -3,6 +3,7 @@ package org.firstinspires.ftc.team20150;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import static java.lang.Thread.sleep;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -27,5 +28,14 @@ public class Intake {
     }
     public void reverse(){
         intakeMotor.setPower(-intakeSpeed);
+    }
+
+    public void shortReverse() {
+            this.reverse();
+            try {
+                sleep(200);
+            } catch (InterruptedException ignored) {
+            }
+            this.run();
     }
 }

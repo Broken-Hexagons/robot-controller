@@ -28,30 +28,42 @@ public class BioBuzzTwoDriverMode extends BaseTeleOpMode {
         telemetry.speak("Started");
     }
 
+
     @Override
     public void loop(){
         super.loop();
 
         //Emergency stop
-        if(gamepad1.xWasPressed()){
-            shooter.stop();
+        if(gamepad1.squareWasPressed()){
+            this.stop();
         }
 
-        // Release pollen
-        if(gamepad2.aWasPressed()){
+        // Shoot
+        if(gamepad2.crossWasPressed()){
             shooter.openGatekeeper();
         }
-        if(gamepad2.aWasReleased()){
+        if(gamepad2.crossWasReleased()){
             shooter.closeGatekeeper();
         }
 
-        //intake control
-        if(gamepad2.yWasPressed()){
-            intake.reverse();
-
-        }
-        if(gamepad2.yWasReleased()){
+        // intake start and stop
+        if(gamepad2.circleWasPressed()){
             intake.run();
+        }
+        if(gamepad2.squareWasPressed()){
+            intake.stop();
+        }
+
+        // intake reverse
+        if(gamepad2.triangleWasPressed()){
+            intake.reverse();
+        }
+        if(gamepad2.triangleWasReleased()){
+            intake.run();
+        }
+
+        if(gamepad2.right_trigger > 0.75){
+            intake.shortReverse();
         }
 
         if(gamepad2.right_bumper) {

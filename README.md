@@ -27,7 +27,7 @@ The `TeamCode` module contains custom autonomous and teleoperated OpModes, subsy
 - **TeleOp Drivetrain Base (`BaseTeleOpMode.java`)**:
   - 4-wheel drive system mapped to Gamepad 1.
   - Trigonometric angle snapping, magnitude processing, and differential wheel power scaling.
-  - Hold Gamepad 1's **left bumper** for **Fast (75%)** or **right bumper** for **Slow (25%)**; releasing both restores **Standard (50%)**. Slow takes priority if both are held.
+  - Speed toggling via bumpers: **Standard (50%)**, **Fast (75%)**, and **Slow (25%)**.
 - **Autonomous Drive Base (`BaseAutoOpMode.java`)**:
   - Encoder-calculated movement functions: `driveForwardInches`, `strafeLeftInches`, `strafeRightInches`, and `turnLeftDegrees`/`turnRightDegrees`.
   - Closed-loop motor control (`RUN_TO_POSITION`).
@@ -55,32 +55,6 @@ The `TeamCode` module contains custom autonomous and teleoperated OpModes, subsy
 | **Intake Motor** | `DcMotor` | `INTAKE` |
 
 ---
-
-## 🎮 Game Pad 1
-| Button | Function |
-| :--- | :--- | 
-| 🕹️ Right | Turn robot |
-| 🕹️ Left | Drive robot + strafe right, left |
-| ⏹️ | Emergency stop |
-
-
-
-
-## 🎮 Game Pad 2
-| Button | Function |
-| :--- | :--- | 
-| ✖️ | Hold to Shoot |
-| 🔼 | Hold to Reverse intake |
-| ⬆️⬇️ | Change preset speed |
-| ⬆️⬇️ + Right bumper | Change speed by 0.01 |
-| ⏹️ | Emergency stop |
-| ⏺️ | Not used |
-
-
-
-
-
-
 
 ## 📂 Package Structure
 
