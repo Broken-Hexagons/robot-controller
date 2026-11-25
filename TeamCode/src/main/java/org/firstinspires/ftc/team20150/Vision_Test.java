@@ -25,6 +25,7 @@ import android.graphics.Color;
 import android.util.Size;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -37,8 +38,8 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.opencv.Circle;
 import org.firstinspires.ftc.vision.opencv.ColorBlobLocatorProcessor;
 import org.firstinspires.ftc.vision.opencv.ColorRange;
-import org.firstinspires.ftc.vision.opencv.ImageRegion
-import org.firstinspires.ftc.vision.opencv.ColorRange;
+import org.firstinspires.ftc.vision.opencv.ColorSpace;
+import org.firstinspires.ftc.vision.opencv.ImageRegion;
 import org.opencv.core.Scalar;
 import java.util.List;
 
@@ -73,8 +74,20 @@ import java.util.List;
  */
 
 //@Disabled
+@Config
 @TeleOp(name = "Ben's Vision Testing", group = "Concept")
 public class Vision_Test extends LinearOpMode {
+    //setting up tunable HSV variable
+    public static int H_MIN = 20;
+    public static int H_MAX = 30;
+    public static int S_MIN = 100;
+    public static int S_MAX = 255;
+    public static int V_MIN = 100;
+    public static int V_MAX = 255;
+    public static int BLUR_SIZE = 5;
+    public static int DILATE_SIZE = 15;
+    public static int ERODE_SIZE = 15;
+
     @Override
     public void runOpMode() {
 
@@ -139,18 +152,19 @@ public class Vision_Test extends LinearOpMode {
         ColorBlobLocatorProcessor colorLocator = new ColorBlobLocatorProcessor.Builder()
                 .setTargetColorRange(new ColorRange(
                         ColorSpace.HSV,
-                        new Scalar(20,100,100)
-                ))   // Use a predefined color match
+                        new Scalar(H_MIN,S_MIN,V_MIN),  //lower bound(Hue, Saturation, Value)
+                        new Scalar (H_MAX, S_MAX, V_MAX)   //Upper bound(Hue, Saturation, Value)
+                ))
                 .setContourMode(ColorBlobLocatorProcessor.ContourMode.EXTERNAL_ONLY)
                 .setRoi(ImageRegion.entireFrame())
                 .setDrawContours(true)   // Show contours on the Stream Preview
                 .setBoxFitColor(0)       // Disable the drawing of rectangles
                 .setCircleFitColor(Color.rgb(255, 255, 0)) // Draw a circle
-                .setBlurSize(5)          // Smooth the transitions between different colors in image
+                .setBlurSize(BLUR_SIZE)          // Smooth the transitions between different colors in image
 
                 // the following options have been added to fill in perimeter holes.
-                .setDilateSize(15)       // Expand blobs to fill any divots on the edges
-                .setErodeSize(15)        // Shrink blobs back to original size
+                .setDilateSize(DILATE_SIZE)       // Expand blobs to fill any divots on the edges
+                .setErodeSize(ERODE_SIZE)        // Shrink blobs back to original size
                 .setMorphOperationType(ColorBlobLocatorProcessor.MorphOperationType.CLOSING)
 
                 .build();
